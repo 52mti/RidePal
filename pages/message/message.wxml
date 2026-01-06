@@ -1,0 +1,38 @@
+<view class="container">
+  <scroll-view scroll-y="true" style="height: 100vh;">
+    
+    <block wx:for="{{msgList}}" wx:key="id">
+      <view class="chat-item" bindtap="goToChat" data-id="{{item.id}}" data-title="{{item.title}}">
+        
+        <view class="avatar-box">
+          <image class="avatar" src="{{item.avatarUrl}}"></image>
+          <view class="badge" wx:if="{{item.unread > 0}}">{{item.unread}}</view>
+        </view>
+
+        <view class="content-box">
+          <view class="row-top">
+            <view class="title">
+              {{item.title}}
+              <text wx:if="{{item.type === 'group'}}" class="tag-group">群</text>
+            </view>
+            <view class="time">{{item.updatedTime}}</view>
+          </view>
+
+          <view class="row-bottom">
+            <text wx:if="{{item.type === 'ad'}}" class="tag-ad">广告</text>
+            <text class="msg-text">{{item.content}}</text>
+          </view>
+        </view>
+
+      </view>
+    </block>
+
+    <view style="height: 20px;"></view>
+  </scroll-view>
+  
+  <service-menu-modal 
+    show="{{ showServiceMenu }}" 
+    bind:close="onCloseServiceMenu" 
+    bind:select="onSelectService"
+  />
+</view>

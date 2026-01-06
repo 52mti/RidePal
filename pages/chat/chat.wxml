@@ -1,0 +1,46 @@
+<view class="chat-container">
+  
+  <scroll-view 
+    class="scroll-box" 
+    scroll-y="true" 
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{triggered}}"
+    bindrefresherrefresh="onPullDownRefresh"
+    scroll-into-view="{{toViewId}}"
+    scroll-with-animation="{{false}}"
+  >
+    <view style="height: 20rpx;"></view>
+
+    <block wx:for="{{messages}}" wx:key="id">
+      <view class="time-stamp" wx:if="{{item.showTime}}">{{item.displayTime}}</view>
+
+      <view id="msg-{{item.id}}" class="msg-row {{item.isMe ? 'msg-me' : 'msg-other'}}">
+        
+        <image class="avatar" src="{{item.avatar}}"></image>
+
+        <view class="bubble-box">
+          <view wx:if="{{item.type === 'text'}}" class="bubble-content">{{item.content}}</view>
+          
+          <image 
+            wx:if="{{item.type === 'image'}}" 
+            src="{{item.content}}" 
+            class="bubble-image" 
+            mode="widthFix"
+            bindtap="previewImg"
+            data-src="{{item.content}}"
+          ></image>
+        </view>
+
+      </view>
+    </block>
+
+    <view style="height: 120rpx;"></view>
+    <view id="bottom-anchor"></view>
+  </scroll-view>
+
+  <view class="input-area">
+    <input class="input-field" value="{{inputValue}}" bindinput="onInput" placeholder="发消息..." confirm-type="send" bindconfirm="sendMessage"/>
+    <button class="send-btn" size="mini" bindtap="sendMessage">发送</button>
+  </view>
+
+</view>

@@ -1,0 +1,17 @@
+/* 弹窗样式 */
+.menu-header {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1rpx solid #eee;
+}
+
+
+.menu-close {
+  padding: 15px;
+  text-align: center;
+  color: #666;
+  border-top: 10px solid #f7f8fa; /* 分隔条 */
+  font-size: 16px;
+}

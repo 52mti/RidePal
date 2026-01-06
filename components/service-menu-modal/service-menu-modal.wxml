@@ -1,0 +1,24 @@
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  round
+  bind:close="onClose"
+  custom-style="height: 40%;"
+>
+  <view class="menu-header">选择服务频道</view>
+  
+  <scroll-view scroll-y style="height: 300rpx;">
+    <van-grid column-num="4" border="{{ false }}">
+      <van-grid-item 
+        wx:for="{{ services }}" 
+        wx:key="id" 
+        icon="{{ item.icon }}" 
+        text="{{ item.name }}" 
+        bind:click="onServiceClick"
+        data-id="{{ item.id }}"
+      />
+    </van-grid>
+  </scroll-view>
+  
+  <view class="menu-close" bindtap="onClose">取消</view>
+</van-popup>

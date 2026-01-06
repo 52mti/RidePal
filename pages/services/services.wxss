@@ -1,0 +1,204 @@
+/* 全局背景 */
+page {
+  background-color: #f7f8fa;
+}
+
+/* 顶部固定区域 */
+.top-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffc107; /* 设计图的主色调黄色 */
+  z-index: 99;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+  color: #000;
+}
+
+/* 筛选栏样式 */
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: #fff;
+  padding: 0 15px;
+  border-bottom: 1rpx solid #eee;
+}
+
+.filter-left {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  background: #f2f3f5;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #333;
+}
+
+.filter-text {
+  margin: 0 4px;
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.filter-right {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  gap: 4px;
+}
+
+/* 卡片样式 */
+.carpool-card {
+  margin: 15px 12px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  border: 1rpx solid #eebe00; /* 配合黄色主题的边框 */
+}
+
+/* 卡片头部 - 还原设计图的黄色背景 */
+.card-header {
+  background-color: #ffc107;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px; /* 方形圆角 */
+  background: #eee;
+  border: 1px solid #fff;
+  margin-right: 10px;
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+}
+
+.remark {
+  font-size: 12px;
+  font-weight: normal;
+  color: #444;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.depart-time {
+  display: block;
+  font-size: 20px; /* 大号时间字体 */
+  font-weight: 800;
+  color: #000;
+  line-height: 1.2;
+}
+
+.seat-badge {
+  font-size: 12px;
+  color: #333;
+}
+
+/* 卡片主体 */
+.card-body {
+  padding: 15px;
+  background: #fff;
+}
+
+.route-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.route-line:last-child {
+  margin-bottom: 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+}
+
+/* 绘制连接线 */
+.dot::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  width: 1px;
+  height: 24px;
+  background: #eee;
+}
+.route-line:last-child .dot::after {
+  display: none;
+}
+
+.start-dot {
+  background: #07c160;
+}
+.way-dot {
+  background: #ff976a;
+}
+.end-dot {
+  background: #ee0a24;
+}
+
+.location-name {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+.location-name.way {
+  color: #666;
+  font-size: 14px;
+}
+
+.card-footer {
+  padding: 8px 15px;
+  border-top: 1rpx solid #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 列表底部 */
+.list-placeholder {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-size: 12px;
+}

@@ -1,0 +1,86 @@
+<view class="container">
+  <view class="top-section">
+    <view style="height: {{statusBarHeight}}px;"></view>
+    <view class="nav-title" style="height: 44px; line-height: 44px;">拼车服务</view>
+
+    <view class="filter-bar">
+      <view class="filter-left">
+        <view class="filter-item" bindtap="onFilterLocation">
+          <van-icon name="location-o" />
+          <text class="filter-text">{{ filter.start ? filter.start + ' → ' + filter.end : '地点筛选' }}</text>
+          <van-icon name="arrow-down" size="10px" />
+        </view>
+        <view class="filter-item" bindtap="onFilterTime">
+          <van-icon name="clock-o" />
+          <text class="filter-text">{{ filter.time || '发车时间' }}</text>
+          <van-icon name="arrow-down" size="10px" />
+        </view>
+      </view>
+      <view class="filter-right" bindtap="onOpenMoreFilters">
+        <text>筛选</text>
+        <van-icon name="filter-o" />
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="main-content" style="padding-top: {{statusBarHeight + 94}}px; padding-bottom: 60px;">
+    
+    <block wx:for="{{ carpoolList }}" wx:key="id">
+      <view class="carpool-card">
+        <view class="card-header">
+          <view class="user-info">
+            <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+            <view class="user-meta">
+              <text class="user-name">{{item.nickname}} <text class="remark" wx:if="{{item.remark}}">({{item.remark}})</text></text>
+            </view>
+          </view>
+          <view class="header-right">
+            <text class="depart-time">{{item.time}}</text>
+            <view class="seat-badge">
+              <text class="seat-num">{{item.seatsTaken}}/{{item.seatsTotal}}</text>
+              <text class="seat-label">空位</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="card-body">
+          <view class="route-line">
+            <view class="dot start-dot"></view>
+            <text class="location-name start">{{item.startPoint}}</text>
+          </view>
+          
+          <view class="route-line" wx:if="{{item.wayPoint}}">
+            <view class="dot way-dot"></view>
+            <text class="location-name way">经停：{{item.wayPoint}}</text>
+          </view>
+
+          <view class="route-line">
+            <view class="dot end-dot"></view>
+            <text class="location-name end">{{item.endPoint}}</text>
+          </view>
+        </view>
+        
+        <view class="card-footer">
+           <van-tag type="warning" plain>拼车</van-tag>
+           <van-button size="mini" color="#ffc107" custom-style="color:#000; font-weight:bold;">联系车主</van-button>
+        </view>
+      </view>
+    </block>
+
+    <view class="list-placeholder">没有更多数据了</view>
+  </scroll-view>
+
+  <van-tabbar active="{{ activeTab }}" bind:change="onTabChange" z-index="100">
+    <van-tabbar-item icon="chat-o">信息</van-tabbar-item>
+    <van-tabbar-item icon="friends-o">通讯录</van-tabbar-item>
+    <van-tabbar-item icon="apps-o">服务</van-tabbar-item>
+    <van-tabbar-item icon="user-o">我</van-tabbar-item>
+  </van-tabbar>
+
+  <service-menu-modal 
+    show="{{ showServiceMenu }}" 
+    bind:close="onCloseServiceMenu" 
+    bind:select="onSelectService"
+  />
+
+</view>
