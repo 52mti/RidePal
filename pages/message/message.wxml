@@ -1,5 +1,10 @@
 <view class="container">
-  <scroll-view scroll-y="true" style="height: 100vh;">
+  <view class="icon-group">
+    <van-icon name="search" size="23px" color="#333" bind:click="handleSearchClick" class="search-icon" />
+    <van-icon name="add-o" size="23px" color="#333" bind:click="handleAddClick" style="margin-left: 15rpx;" />
+  </view>
+
+  <scroll-view scroll-y="true" class="message-list" scroll-with-animation="true">
     
     <block wx:for="{{msgList}}" wx:key="id">
       <view class="chat-item" bindtap="goToChat" data-id="{{item.id}}" data-title="{{item.title}}">
@@ -27,7 +32,10 @@
       </view>
     </block>
 
-    <view style="height: 20px;"></view>
+    <van-empty description="暂无任务" wx:if="{{msgList.length === 0 && !loading}}"></van-empty>
+    <view class="loading-text" wx:if="{{loading}}">加载中...</view>
+    <view class="loading-text" wx:if="{{finished && msgList.length > 0}}">没有更多了</view>
+
   </scroll-view>
   
   <service-menu-modal 

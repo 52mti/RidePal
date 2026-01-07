@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "service-menu-modal": "/components/service-menu-modal/service-menu-modal"
+  }
+}

@@ -5,7 +5,7 @@ Page({
   data: {
     keyword: '',
     // 模拟通讯录数据
-    contactList: [
+    originalList: [
       {
         id: '1',
         name: '阿猫',
@@ -30,13 +30,15 @@ Page({
         avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=4',
       },
     ],
+    showList: [],
+    selected: [],
   },
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ active: 1 })
     }
-    
+    this.onSearch({ detail: this.data.keyword })
   },
 
   fetchContacts(refresh = false) {},
@@ -70,11 +72,43 @@ Page({
     }, 500)
   },
 
-  onClickContact(e) {
-    const { id } = e.currentTarget.dataset
-    const contact = this.data.contactList.find((c) => c.id === id)
-    wx.navigateTo({
-      url: `/pages/contact-detail/contact-detail?contactId=${contact.id}&contactName=${contact.name}`,
+  // 切换复选框状态
+  onChange(event) {
+    this.setData({
+      selected: event.detail,
     })
-  }
+  },
+
+  // 点击单元格触发复选框
+  toggle(event) {
+    const { index } = event.currentTarget.dataset
+    const checkbox = this.selectComponent(`.checkboxes-${index}`)
+    checkbox.toggle()
+  },
+
+  // 点击取消
+  onCancel() {
+    wx.navigateBack()
+  },
+
+  // 点击确认 (新建群聊)
+  onConfirm() {
+    if (this.data.selected.length === 0) {
+      wx.showToast({ title: '请至少选择一人', icon: 'none' })
+      return
+    }
+
+    wx.showLoading({ title: '创建中...' })
+
+    // 模拟网络请求
+    setTimeout(() => {
+      wx.hideLoading()
+      wx.showToast({ title: '群聊创建成功', icon: 'success' })
+
+      // 延迟后返回或跳转到新群聊
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 1500)
+    }, 1000)
+  },
 })

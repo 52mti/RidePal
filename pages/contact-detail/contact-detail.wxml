@@ -1,0 +1,64 @@
+<view class="page-container">
+
+  <view class="header-section">
+    <view class="user-card">
+      <view class="avatar-box">
+        <van-image 
+          round 
+          width="120rpx" 
+          height="120rpx" 
+          fit="cover"
+          src="https://img.yzcdn.cn/vant/cat.jpeg" 
+        />
+      </view>
+      <view class="info-box">
+        <view class="main-row">
+          <text class="name">张三 (备注名)</text>
+          <van-icon name="edit" class="edit-icon" />
+        </view>
+        <view class="sub-row">
+          <text class="label">昵称：</text>
+          <text class="value">旅行者一号</text>
+        </view>
+        <view class="sub-row">
+          <text class="label">账号：</text>
+          <text class="value">138****8888 (加密)</text>
+          <van-tag plain type="primary" size="mini" custom-class="copy-tag">复制</van-tag>
+        </view>
+      </view>
+      <view class="arrow-box">
+        <van-icon name="arrow" color="#969799" />
+      </view>
+    </view>
+  </view>
+
+  <view class="section-box">
+    <van-cell-group inset title="常驻广告">
+      <van-cell>
+        <view slot="title">
+          <view class="ad-content">
+            <text>这里是常驻广告的展示区域，可以放置一些固定的宣传语或Banner图片信息。</text>
+          </view>
+        </view>
+      </van-cell>
+    </van-cell-group>
+  </view>
+
+  <view class="section-box">
+    <van-cell-group inset title="更新广告">
+      <van-cell title="广告位内容 A" label="2023-10-21 更新" is-link />
+      <van-cell title="广告位内容 B" label="2023-10-20 更新" is-link />
+      <van-cell title="广告位内容 C" label="暂无更多内容" border="{{ false }}" />
+    </van-cell-group>
+  </view>
+
+  <view class="footer-placeholder"></view>
+
+  <view class="footer-bar">
+    <view class="btn-group">
+      <van-button type="default" class="expand" icon="chat-o" block custom-class="action-btn">发送消息</van-button>
+      <van-button type="primary" class="expand" icon="video-o" block custom-class="action-btn">视频通话</van-button>
+    </view>
+  </view>
+
+</view>

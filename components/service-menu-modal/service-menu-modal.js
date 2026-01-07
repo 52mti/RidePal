@@ -32,8 +32,9 @@ Component({
     },
 
     // 点击具体服务
-    onSelect(e) {
-      const item = e.currentTarget.dataset.item
+    onServiceClick(e) {
+      const id = e.currentTarget.dataset.id
+      const  item = this.data.services.find(item => item.id === id)
       // 1. 关闭弹窗
       this.onClose()
       // 2. 将选中的项抛出给父页面，父页面决定怎么跳转

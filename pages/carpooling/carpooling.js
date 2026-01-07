@@ -1,4 +1,6 @@
+const serviceBehavior = require('../../behaviors/service-popup')
 Page({
+  behaviors: [serviceBehavior],
   data: {
     statusBarHeight: 20,
     activeTab: 2, // 默认选中"服务" (索引从0开始，信息0, 通讯录1, 服务2, 我3)
@@ -68,23 +70,6 @@ Page({
     this.setData({
       statusBarHeight: sys.statusBarHeight,
     })
-  },
-
-  // 底部Tab切换逻辑
-  onTabChange(event) {
-    const index = event.detail
-
-    // 如果点击的是"服务" (索引2)，拦截跳转，显示弹窗
-    if (index === 2) {
-      this.setData({ showServiceMenu: true })
-      // 保持选中状态不变，或者重置回原来的状态（取决于你的需求）
-      // 这里我们为了视觉效果，就让它停留在服务上
-    } else {
-      // 正常的页面跳转逻辑
-      this.setData({ activeTab: index })
-      // wx.switchTab({ url: '...' })
-      console.log('跳转到 Tab:', index)
-    }
   },
 
   // 顶部筛选逻辑

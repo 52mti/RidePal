@@ -1,7 +1,26 @@
 /* 容器 */
 .container {
   background-color: #ededed;
-  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.message-list {
+  -webkit-flex: 1;
+  flex: 1;
+  overflow: hidden;
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+}
+
+.loading-text {
+  color: #969799;
+  font-size: 24rpx;
+  padding: 20rpx;
+  text-align: center;
 }
 
 /* 列表项 */
@@ -106,4 +125,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.4;
+}
+
+.icon-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10rpx 16rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+  padding-right: 25rpx;
+}
+
+.search-icon {
+  margin-left: auto;
+  display: block;
 }

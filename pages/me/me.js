@@ -1,5 +1,7 @@
+const serviceBehavior = require('../../behaviors/service-popup')
 // pages/me/me.js
 Page({
+  behaviors: [serviceBehavior],
   /**
    * 页面的初始数据
    */
@@ -48,4 +50,22 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {},
+
+  // 复制账号功能
+  copyId() {
+    wx.setClipboardData({
+      data: '13888888888',
+      success: function () {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
+  },
+
+  // 页面跳转逻辑示例
+  navigateTo(event) {
+    // const url = event.currentTarget.dataset.url;
+    // wx.navigateTo({ url });
+  }
 })

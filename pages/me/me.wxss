@@ -1,1 +1,80 @@
-/* pages/me/me.wxss */
+/* 页面全局背景色 */
+page {
+  background-color: #f7f8fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}
+
+.page-container {
+  padding-bottom: 50rpx;
+}
+
+/* 1. 用户头部样式 */
+.user-header {
+  background-color: #ffffff;
+  padding: 40rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.user-info-box {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-box {
+  margin-right: 30rpx;
+}
+
+.info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #323233;
+  margin-right: 16rpx;
+}
+
+/* 调整 Vant 标签的微调 */
+.user-tag {
+  border-radius: 6rpx !important;
+}
+
+.id-row {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #969799;
+}
+
+.user-id {
+  margin-right: 16rpx;
+}
+
+/* 复制按钮微调 */
+.copy-btn {
+  height: 36rpx !important;
+  line-height: 34rpx !important;
+  padding: 0 16rpx !important;
+  font-size: 20rpx !important;
+}
+
+/* 2. 区块容器样式 (用于 Grid 和 CellGroup) */
+.section-box {
+  margin-top: 24rpx;
+}
+
+/* 覆盖 Vant Grid 的背景，使其与 CellGroup 统一风格（可选） */
+.van-grid {
+  background-color: #ffffff;
+  padding: 20rpx 0;
+}

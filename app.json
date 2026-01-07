@@ -3,7 +3,9 @@
     "pages/message/message",
     "pages/chat/chat",
     "pages/contacts/contacts",
-    "pages/services/services",
+    "pages/contact-detail/contact-detail",
+    "pages/select-contact/select-contact",
+    "pages/carpooling/carpooling",
     "pages/me/me"
   ],
   "window": {
@@ -28,7 +30,7 @@
         "text": "通讯录"
       },
       {
-        "pagePath": "pages/services/services",
+        "pagePath": "pages/carpooling/carpooling",
         "text": "服务"
       },
       {

@@ -4,12 +4,27 @@ Page({
   behaviors: [serviceBehavior],
   data: {
     msgList: [],
+    loading: false,
+    finished: true,
   },
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ active: 0 })
     }
+  },
+
+  handleSearchClick() {
+    wx.showToast({
+      title: '搜索功能待开发，敬请期待~',
+      icon: 'none',
+    })
+  },
+
+  handleAddClick() {
+    wx.navigateTo({
+      url: '/pages/select-contact/select-contact',
+    })
   },
 
   onLoad: function () {

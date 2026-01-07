@@ -1,31 +1,24 @@
 <view class="contact-container">
-  <van-nav-bar
-    title="选择联系人"
-    left-text="取消"
-    right-text="确定({{selected.length}})"
-    left-arrow
-    safe-area-inset-top="{{false}}"
-    bind:click-left="onCancel"
-    bind:click-right="onConfirm"
-  />
+  <van-search 
+    bind:change="onSearchChange" 
+    bind:search="onSearch" 
+    placeholder="搜索" 
+    value="{{keyword}}">
+  </van-search>
 
-  <van-search placeholder="搜索" />
-
-  <van-checkbox-group value="{{ selected }}" bind:change="onChange">
-    <van-cell-group>
-      <van-cell
-        wx:for="{{ list }}"
-        wx:key="id"
-        title="{{ item.name }}"
-        clickable
-        data-index="{{ index }}"
-        bind:click="toggle"
-      >
-        <van-checkbox slot="right-icon" name="{{ item.id }}" class="checkboxes-{{ index }}" />
-        <image slot="icon" src="{{item.avatar}}" class="avatar-icon" />
-      </van-cell>
-    </van-cell-group>
-  </van-checkbox-group>
+  <scroll-view scroll-y="true" class="contact-list" scroll-with-animation="true">
+    <van-cell
+      wx:for="{{ contactList }}"
+      wx:key="id"
+      title="{{ item.name + (item.note ? ' (' + item.note + ')' : '') }}"
+      clickable
+      data-id="{{ item.id }}"
+      bind:click="onClickContact"
+    >
+      <image slot="icon" src="{{item.avatar}}" class="avatar-icon" />
+    </van-cell>
+    
+  </scroll-view>
 
   <service-menu-modal 
     show="{{ showServiceMenu }}" 

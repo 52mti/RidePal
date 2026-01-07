@@ -16,7 +16,7 @@ module.exports = Behavior({
 
       // 示例：根据ID跳转不同页面
       if (serviceItem.id === 1) {
-        wx.navigateTo({ url: '/pages/carpool/index' })
+        wx.switchTab({ url: '/pages/carpooling/carpooling' })
       }
     },
   },

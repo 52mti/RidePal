@@ -1,2 +1,58 @@
-<!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<view class="page-container">
+  
+  <view class="user-header">
+    <view class="user-info-box">
+      <view class="avatar-box">
+        <van-image 
+          round 
+          width="120rpx" 
+          height="120rpx" 
+          src="https://img.yzcdn.cn/vant/cat.jpeg" 
+        />
+      </view>
+      <view class="info-content">
+        <view class="name-row">
+          <text class="nickname">微信用户</text>
+          <van-tag type="primary" plain size="medium" custom-class="user-tag">普通用户</van-tag>
+        </view>
+        <view class="id-row">
+          <text class="user-id">账号: 138****8888</text>
+          <van-button size="mini" round plain type="default" custom-class="copy-btn">复制</van-button>
+        </view>
+      </view>
+      <view class="arrow-box">
+        <van-icon name="arrow" color="#969799" />
+      </view>
+    </view>
+  </view>
+
+  <view class="section-box">
+    <van-grid column-num="4" border="{{ false }}">
+      <van-grid-item icon="logistics" text="车辆维护" />
+      <van-grid-item icon="guide-o" text="发车维护" />
+      <van-grid-item icon="friends-o" text="坐车信息" />
+      <van-grid-item icon="chart-trending-o" text="动态展示" />
+    </van-grid>
+  </view>
+
+  <view class="section-box">
+    <van-cell-group inset>
+      <van-cell title="开车记录" icon="notes-o" is-link />
+      <van-cell title="坐车记录" icon="records" is-link />
+    </van-cell-group>
+  </view>
+
+  <view class="section-box">
+    <van-cell-group inset>
+      <van-cell title="更新广告" icon="bullhorn-o" is-link value="查看详情" />
+      <van-cell title="联系客服" icon="service-o" is-link />
+    </van-cell-group>
+  </view>
+
+  <service-menu-modal 
+    show="{{ showServiceMenu }}" 
+    bind:close="onCloseServiceMenu" 
+    bind:select="onSelectService"
+  />
+
+</view>
