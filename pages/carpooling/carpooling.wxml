@@ -1,29 +1,26 @@
 <view class="container">
-  <view class="top-section">
-    <view style="height: {{statusBarHeight}}px;"></view>
-    <view class="nav-title" style="height: 44px; line-height: 44px;">拼车服务</view>
+  <custom-nav title="拼车服务" bg-color="#ffc107" />
 
-    <view class="filter-bar">
-      <view class="filter-left">
-        <view class="filter-item" bindtap="onFilterLocation">
-          <van-icon name="location-o" />
-          <text class="filter-text">{{ filter.start ? filter.start + ' → ' + filter.end : '地点筛选' }}</text>
-          <van-icon name="arrow-down" size="10px" />
-        </view>
-        <view class="filter-item" bindtap="onFilterTime">
-          <van-icon name="clock-o" />
-          <text class="filter-text">{{ filter.time || '发车时间' }}</text>
-          <van-icon name="arrow-down" size="10px" />
-        </view>
+  <view class="filter-bar">
+    <view class="filter-left">
+      <view class="filter-item" bindtap="onFilterLocation">
+        <van-icon name="location-o" />
+        <text class="filter-text">{{ filter.start ? filter.start + ' → ' + filter.end : '地点筛选' }}</text>
+        <van-icon name="arrow-down" size="10px" />
       </view>
-      <view class="filter-right" bindtap="onOpenMoreFilters">
-        <text>筛选</text>
-        <van-icon name="filter-o" />
+      <view class="filter-item" bindtap="onFilterTime">
+        <van-icon name="clock-o" />
+        <text class="filter-text">{{ filter.time || '发车时间' }}</text>
+        <van-icon name="arrow-down" size="10px" />
       </view>
+    </view>
+    <view class="filter-right" bindtap="onOpenMoreFilters">
+      <text>筛选</text>
+      <van-icon name="filter-o" />
     </view>
   </view>
 
-  <scroll-view scroll-y class="main-content" style="padding-top: {{statusBarHeight + 94}}px; padding-bottom: 60px;">
+  <scroll-view scroll-y class="main-content" style="padding-bottom: 60px;">
     
     <block wx:for="{{ carpoolList }}" wx:key="id">
       <view class="carpool-card">

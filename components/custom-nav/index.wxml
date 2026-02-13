@@ -1,0 +1,41 @@
+<!-- 固定导航栏 -->
+<view
+  class="nav-container"
+  style="padding-top: {{statusBarHeight}}px; background: {{bgColor}};"
+>
+  <view class="nav-content" style="height: {{navContentHeight}}px;">
+
+    <!-- 中间区域（绝对定位，屏幕正中间） -->
+    <view class="nav-center">
+      <block wx:if="{{useSlotCenter}}">
+        <slot name="center"></slot>
+      </block>
+      <block wx:else>
+        <text wx:if="{{title}}" class="nav-title" style="color: {{textColor}};">{{title}}</text>
+      </block>
+    </view>
+
+    <!-- 左侧区域 -->
+    <view class="nav-left" style="padding-left: {{paddingLeft}}px;">
+      <block wx:if="{{useSlotLeft}}">
+        <slot name="left"></slot>
+      </block>
+      <block wx:else>
+        <view class="nav-icon" wx:if="{{showBack}}" bindtap="onBack" hover-class="nav-icon-hover">
+          <van-icon name="arrow-left" size="20px" color="{{textColor}}" />
+        </view>
+        <view class="nav-icon" wx:if="{{showSearch}}" bindtap="onSearch" hover-class="nav-icon-hover">
+          <van-icon name="search" size="20px" color="{{textColor}}" />
+        </view>
+        <view class="nav-icon" wx:if="{{showAdd}}" bindtap="onAdd" hover-class="nav-icon-hover">
+          <van-icon name="add-o" size="20px" color="{{textColor}}" />
+        </view>
+      </block>
+      <slot name="left-extra"></slot>
+    </view>
+
+  </view>
+</view>
+
+<!-- 占位块 -->
+<view class="nav-placeholder" style="height: {{totalNavHeight}}px;"></view>

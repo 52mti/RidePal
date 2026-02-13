@@ -1,0 +1,69 @@
+/* 固定在顶部 */
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-sizing: border-box;
+}
+
+/* 导航内容行 */
+.nav-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* 左侧（z-index 高于 center，保证可点击） */
+.nav-left {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* 中间：绝对定位，占满整行，标题在屏幕正中央 */
+.nav-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+  pointer-events: auto;
+}
+
+/* 图标触控区（至少 44px 方便点击） */
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.nav-icon-hover {
+  opacity: 0.5;
+}
+
+/* 占位块 */
+.nav-placeholder {
+  width: 100%;
+}

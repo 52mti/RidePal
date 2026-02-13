@@ -1,4 +1,5 @@
 <view class="page-container">
+  <custom-nav title="联系人详情" show-back bg-color="#F6F7F9" />
 
   <view class="header-section">
     <view class="user-card">

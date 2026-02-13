@@ -1,6 +1,5 @@
 Page({
   data: {
-    statusBarHeight: 20,
     chatTitle: '聊天对象',
     messages: [],
     toViewId: '',
@@ -11,11 +10,6 @@ Page({
   },
 
   onLoad: function (options) {
-    // 获取状态栏高度
-    const sysInfo = wx.getSystemInfoSync()
-    this.setData({ statusBarHeight: sysInfo.statusBarHeight })
-
-    // 设置标题
     if (options.title) {
       this.setData({ chatTitle: options.title })
     }

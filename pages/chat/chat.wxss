@@ -9,25 +9,6 @@ page {
   flex-direction: column;
 }
 
-/* ===== 自定义导航栏 ===== */
-.nav-bar {
-  background-color: #ededed;
-}
-
-.nav-bar-inner {
-  height: 88rpx;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30rpx;
-}
-
-.nav-title {
-  font-size: 34rpx;
-  font-weight: 600;
-  color: #333;
-}
-
 /* ===== 蓝色公告卡片 ===== */
 .announcement {
   margin: 0 24rpx 16rpx;

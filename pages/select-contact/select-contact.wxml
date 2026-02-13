@@ -1,12 +1,8 @@
 <view class="contact-container">
-  <van-nav-bar
-    title="选择联系人"
-    left-text="取消"
-    right-text="确定({{selected.length}})"
-    safe-area-inset-top="{{false}}"
-    bind:click-left="onCancel"
-    bind:click-right="onConfirm"
-  />
+  <custom-nav title="选择联系人" use-slot-left>
+    <view slot="left" class="nav-text-btn" bindtap="onCancel">取消</view>
+    <view slot="left-extra" class="nav-text-btn confirm-btn" bindtap="onConfirm">确定({{selected.length}})</view>
+  </custom-nav>
 
   <van-search 
     bind:change="onSearchChange" 

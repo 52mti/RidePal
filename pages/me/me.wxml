@@ -1,5 +1,6 @@
 <view class="page-container">
-  
+  <custom-nav title="我的" bg-color="#F6F7F9" />
+
   <view class="user-header">
     <view class="user-info-box">
       <view class="avatar-box">

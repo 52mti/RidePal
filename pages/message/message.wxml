@@ -1,15 +1,13 @@
 <view class="container">
-  <!-- 顶部栏 -->
-  <view class="top-bar">
-    <view class="top-bar-left">
-      <van-icon name="search" size="22px" color="#333" bind:click="handleSearchClick" />
-      <van-icon name="add-o" size="22px" color="#333" bind:click="handleAddClick" custom-style="margin-left: 20rpx;" />
-    </view>
-    <view class="top-bar-title">信息</view>
-    <view class="top-bar-right">
-      <van-icon name="aim" size="22px" color="#333" />
-    </view>
-  </view>
+  <!-- Scenario A: Search + Add | Title | Right Icon -->
+  <custom-nav
+    title="信息"
+    show-search
+    show-add
+    bg-color="#F6F7F9"
+    bind:search="handleSearchClick"
+    bind:add="handleAddClick"
+  />
 
   <!-- 消息列表 -->
   <scroll-view scroll-y class="message-list" scroll-with-animation>

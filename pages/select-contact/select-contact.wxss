@@ -14,6 +14,16 @@
   padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
 }
 
+.nav-text-btn {
+  font-size: 28rpx;
+  color: #07c160;
+  padding: 0 10rpx;
+}
+
+.confirm-btn {
+  margin-left: auto;
+}
+
 .avatar-icon {
   width: 36px;
   height: 36px;

@@ -1,5 +1,7 @@
 <view class="contact-container">
-  <van-search 
+  <custom-nav title="通讯录" bg-color="#F6F7F9" />
+
+  <van-search
     bind:change="onSearchChange" 
     bind:search="onSearch" 
     placeholder="搜索" 

@@ -1,4 +1,6 @@
 <view class="container">
+  <custom-nav title="选择位置" show-back bg-color="#F6F7F9" />
+
   <van-search
     value="{{ searchValue }}"
     placeholder="请输入地址（检索框）"

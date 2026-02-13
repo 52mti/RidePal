@@ -2,7 +2,6 @@ const serviceBehavior = require('../../behaviors/service-popup')
 Page({
   behaviors: [serviceBehavior],
   data: {
-    statusBarHeight: 20,
     activeTab: 2, // 默认选中"服务" (索引从0开始，信息0, 通讯录1, 服务2, 我3)
     showServiceMenu: false, // 控制底部弹窗
 
@@ -64,13 +63,7 @@ Page({
     }
   },
 
-  onLoad() {
-    // 获取系统状态栏高度，用于适配自定义导航
-    const sys = wx.getSystemInfoSync()
-    this.setData({
-      statusBarHeight: sys.statusBarHeight,
-    })
-  },
+  onLoad() {},
 
   // 顶部筛选逻辑
   onFilterLocation() {

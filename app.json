@@ -38,6 +38,7 @@
     ]
   },
   "usingComponents": {
+    "custom-nav": "/components/custom-nav/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-search": "@vant/weapp/search/index",
     "van-nav-bar": "@vant/weapp/nav-bar/index",

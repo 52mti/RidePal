@@ -3,24 +3,6 @@ page {
   background-color: #f7f8fa;
 }
 
-/* 顶部固定区域 */
-.top-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #ffc107; /* 设计图的主色调黄色 */
-  z-index: 99;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.nav-title {
-  text-align: center;
-  font-weight: bold;
-  font-size: 17px;
-  color: #000;
-}
-
 /* 筛选栏样式 */
 .filter-bar {
   display: flex;
