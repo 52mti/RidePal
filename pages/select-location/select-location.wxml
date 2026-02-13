@@ -1,0 +1,53 @@
+<view class="container">
+  <van-search
+    value="{{ searchValue }}"
+    placeholder="请输入地址（检索框）"
+    use-action-slot
+    bind:change="onSearchChange"
+    bind:search="onSearch"
+  >
+    <view class="btn-search" slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
+
+  <view class="suggestion-list" wx:if="{{ suggestion.length > 0 && searchValue }}">
+    <view 
+      class="suggestion-item" 
+      wx:for="{{ suggestion }}" 
+      wx:key="id" 
+      bindtap="selectSuggestion" 
+      data-item="{{ item }}"
+    >
+      <view class="title">{{ item.title }}</view>
+      <view class="address">{{ item.address }}</view>
+    </view>
+  </view>
+
+  <van-cell-group title="选定途径点/起终点">
+    <scroll-view scroll-y="true" style="height: 20vh;">
+      <block wx:for="{{ selectedPoints }}" wx:key="index">
+        <van-cell 
+          title="{{ item.title }}" 
+          label="{{ item.address }}"
+          border="{{ true }}"
+        >
+          <van-icon slot="icon" name="location-o" class="location-icon" />
+          <van-icon name="cross" catchtap="removePoint" data-index="{{ index }}" />
+        </van-cell>
+      </block>
+      <van-cell wx:if="{{ selectedPoints.length === 0 }}" title="请在地图上点击选择位置" title-style="color: #999;" />
+    </scroll-view>
+  </van-cell-group>
+
+
+  <view class="map-container">
+    <map
+      id="myMap"
+      class="main-map"
+      latitude="{{ latitude }}"
+      longitude="{{ longitude }}"
+      markers="{{ markers }}"
+      bindtap="onMapTap"
+      show-location
+    ></map>
+  </view>
+</view>
