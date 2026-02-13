@@ -1,19 +1,42 @@
 /* 容器 */
 .container {
-  background-color: #ededed;
-  display: -webkit-flex;
+  background-color: #f5f5f5;
   display: flex;
-  -webkit-flex-direction: column;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
 }
 
+/* 顶部栏 */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 消息列表 */
 .message-list {
-  -webkit-flex: 1;
   flex: 1;
   overflow: hidden;
-  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
 }
 
 .loading-text {
@@ -26,118 +49,162 @@
 /* 列表项 */
 .chat-item {
   display: flex;
-  padding: 12px 16px;
+  padding: 24rpx 30rpx;
   background-color: #fff;
   border-bottom: 1rpx solid #f0f0f0;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .chat-item:active {
-  background-color: #f5f5f5; /* 点击态 */
+  background-color: #f5f5f5;
 }
 
-/* 左侧头像 */
-.avatar-box {
+/* 头像 */
+.avatar-wrap {
   position: relative;
-  margin-right: 12px;
+  margin-right: 24rpx;
+  flex-shrink: 0;
 }
 
 .avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 6px; /* 微信风格圆角 */
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 16rpx;
   background-color: #ddd;
+}
+
+.avatar-dynamic {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 16rpx;
+  background-color: #07c160;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .badge {
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: -8rpx;
+  right: -8rpx;
   background-color: #fa5151;
-  color: white;
-  font-size: 10px;
-  padding: 0 5px;
-  border-radius: 10px;
-  height: 16px;
-  line-height: 16px;
+  color: #fff;
+  font-size: 20rpx;
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  padding: 0 8rpx;
+  border-radius: 32rpx;
+  box-sizing: border-box;
 }
 
-/* 右侧内容 */
+/* 内容区 */
 .content-box {
   flex: 1;
-  overflow: hidden; /* 必须，为了让省略号生效 */
+  overflow: hidden;
+  min-height: 96rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* 第一行布局 */
+/* 第一行 */
 .row-top {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.title-wrap {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex: 1;
+  margin-right: 16rpx;
 }
 
 .title {
-  font-size: 16px;
+  font-size: 30rpx;
   color: #333;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 70%;
 }
 
-.tag-group {
-  font-size: 10px;
+.title-dynamic {
+  color: #07c160;
+  font-weight: 600;
+}
+
+.tag-role {
+  font-size: 24rpx;
   color: #999;
-  border: 1px solid #ddd;
-  padding: 0 2px;
-  border-radius: 2px;
-  margin-left: 4px;
+  margin-left: 6rpx;
+  flex-shrink: 0;
 }
 
 .time {
-  font-size: 12px;
+  font-size: 22rpx;
   color: #b2b2b2;
+  flex-shrink: 0;
 }
 
-/* 第二行内容（核心：限制两行） */
+/* 普通消息第二行 */
 .row-bottom {
   display: flex;
   align-items: center;
-  font-size: 13px;
-  color: #999;
-}
-
-.tag-ad {
-  font-size: 10px;
-  color: #fa9d3b;
-  border: 1px solid #fa9d3b;
-  padding: 0 2px;
-  border-radius: 2px;
-  margin-right: 4px;
-  flex-shrink: 0; /* 防止标签被压缩 */
 }
 
 .msg-text {
-  /* 限制两行显示，多出部分省略号 */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* 行数限制 */
+  font-size: 26rpx;
+  color: #999;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.4;
+  white-space: nowrap;
 }
 
-.icon-group {
+/* 拼车动态内容 */
+.dynamic-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dynamic-detail {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 6rpx;
+}
+
+.dynamic-time-row {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 10rpx 16rpx;
-  background-color: #fff;
-  border-bottom: 1rpx solid #f0f0f0;
-  padding-right: 25rpx;
 }
 
-.search-icon {
-  margin-left: auto;
-  display: block;
+.dynamic-depart {
+  font-size: 24rpx;
+  color: #07c160;
+  font-weight: 500;
+  margin-left: 6rpx;
+}
+
+/* 浮动按钮 */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: calc(180rpx + env(safe-area-inset-bottom));
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #07c160;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(7, 193, 96, 0.4);
+}
+
+.fab:active {
+  opacity: 0.85;
 }

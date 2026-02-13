@@ -1,46 +1,71 @@
 <view class="container">
-  <view class="icon-group">
-    <van-icon name="search" size="23px" color="#333" bind:click="handleSearchClick" class="search-icon" />
-    <van-icon name="add-o" size="23px" color="#333" bind:click="handleAddClick" style="margin-left: 15rpx;" />
+  <!-- 顶部栏 -->
+  <view class="top-bar">
+    <view class="top-bar-left">
+      <van-icon name="search" size="22px" color="#333" bind:click="handleSearchClick" />
+      <van-icon name="add-o" size="22px" color="#333" bind:click="handleAddClick" custom-style="margin-left: 20rpx;" />
+    </view>
+    <view class="top-bar-title">信息</view>
+    <view class="top-bar-right">
+      <van-icon name="aim" size="22px" color="#333" />
+    </view>
   </view>
 
-  <scroll-view scroll-y="true" class="message-list" scroll-with-animation="true">
-    
+  <!-- 消息列表 -->
+  <scroll-view scroll-y class="message-list" scroll-with-animation>
     <block wx:for="{{msgList}}" wx:key="id">
-      <view class="chat-item" bindtap="goToChat" data-id="{{item.id}}" data-title="{{item.title}}">
-        
-        <view class="avatar-box">
-          <image class="avatar" src="{{item.avatarUrl}}"></image>
+      <view class="chat-item" bindtap="goToChat" data-id="{{item.id}}" data-title="{{item.title}}" data-type="{{item.type}}">
+
+        <!-- 头像 -->
+        <view class="avatar-wrap">
+          <image wx:if="{{item.type !== 'dynamic'}}" class="avatar" src="{{item.avatarUrl}}" />
+          <view wx:else class="avatar-dynamic">
+            <van-icon name="logistics" size="24px" color="#fff" />
+          </view>
           <view class="badge" wx:if="{{item.unread > 0}}">{{item.unread}}</view>
         </view>
 
+        <!-- 内容区 -->
         <view class="content-box">
           <view class="row-top">
-            <view class="title">
-              {{item.title}}
-              <text wx:if="{{item.type === 'group'}}" class="tag-group">群</text>
+            <view class="title-wrap">
+              <text class="title {{item.type === 'dynamic' ? 'title-dynamic' : ''}}">{{item.title}}</text>
+              <text wx:if="{{item.tag}}" class="tag-role">({{item.tag}})</text>
             </view>
-            <view class="time">{{item.updatedTime}}</view>
+            <text class="time">{{item.updatedTime}}</text>
           </view>
 
-          <view class="row-bottom">
-            <text wx:if="{{item.type === 'ad'}}" class="tag-ad">广告</text>
+          <!-- 普通消息 -->
+          <view wx:if="{{item.type !== 'dynamic'}}" class="row-bottom">
             <text class="msg-text">{{item.content}}</text>
+          </view>
+
+          <!-- 拼车动态 -->
+          <view wx:else class="dynamic-info">
+            <text class="dynamic-detail">车牌：{{item.plateNumber}} {{item.carColor}} {{item.carModel}}</text>
+            <view class="dynamic-time-row">
+              <van-icon name="clock-o" size="14px" color="#07c160" />
+              <text class="dynamic-depart">{{item.departTime}} 开车</text>
+            </view>
           </view>
         </view>
 
       </view>
     </block>
 
-    <van-empty description="暂无任务" wx:if="{{msgList.length === 0 && !loading}}"></van-empty>
+    <van-empty description="暂无消息" wx:if="{{msgList.length === 0 && !loading}}" />
     <view class="loading-text" wx:if="{{loading}}">加载中...</view>
-    <view class="loading-text" wx:if="{{finished && msgList.length > 0}}">没有更多了</view>
-
+    <view style="height: 160rpx;"></view>
   </scroll-view>
-  
-  <service-menu-modal 
-    show="{{ showServiceMenu }}" 
-    bind:close="onCloseServiceMenu" 
+
+  <!-- 浮动按钮 -->
+  <view class="fab" bindtap="handleAddClick">
+    <van-icon name="edit" size="26px" color="#fff" />
+  </view>
+
+  <service-menu-modal
+    show="{{ showServiceMenu }}"
+    bind:close="onCloseServiceMenu"
     bind:select="onSelectService"
   />
 </view>

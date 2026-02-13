@@ -1,8 +1,30 @@
-<view class="chat-container">
-  
-  <scroll-view 
-    class="scroll-box" 
-    scroll-y="true" 
+<view class="chat-page">
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <van-icon name="arrow-left" size="22px" color="#333" bind:click="goBack" custom-class="nav-back" />
+      <text class="nav-title">{{chatTitle}}</text>
+      <van-icon name="ellipsis" size="22px" color="#333" bind:click="showMore" />
+    </view>
+  </view>
+
+  <!-- 蓝色公告卡片（动态类型显示） -->
+  <view class="announcement" wx:if="{{isDynamic}}">
+    <view class="announcement-header">
+      <text class="announcement-label">公告：拼车动态</text>
+      <text class="announcement-date">{{dynamicInfo.date}}</text>
+    </view>
+    <view class="announcement-body">
+      <text class="announcement-text">车牌：{{dynamicInfo.plateNumber}} {{dynamicInfo.carColor}} {{dynamicInfo.carModel}}</text>
+      <text class="announcement-text">{{dynamicInfo.route}}</text>
+    </view>
+  </view>
+
+  <!-- 消息区域 -->
+  <scroll-view
+    class="scroll-box"
+    scroll-y
     refresher-enabled="{{true}}"
     refresher-triggered="{{triggered}}"
     bindrefresherrefresh="onPullDownRefresh"
@@ -12,35 +34,49 @@
     <view style="height: 20rpx;"></view>
 
     <block wx:for="{{messages}}" wx:key="id">
-      <view class="time-stamp" wx:if="{{item.showTime}}">{{item.displayTime}}</view>
+      <!-- 时间戳 -->
+      <view class="time-stamp" wx:if="{{item.showTime}}">
+        <text class="time-stamp-text">{{item.displayTime}}</text>
+      </view>
 
+      <!-- 消息行 -->
       <view id="msg-{{item.id}}" class="msg-row {{item.isMe ? 'msg-me' : 'msg-other'}}">
-        
         <image class="avatar" src="{{item.avatar}}"></image>
-
-        <view class="bubble-box">
-          <view wx:if="{{item.type === 'text'}}" class="bubble-content">{{item.content}}</view>
-          
-          <image 
-            wx:if="{{item.type === 'image'}}" 
-            src="{{item.content}}" 
-            class="bubble-image" 
+        <view class="bubble {{item.isMe ? 'bubble-me' : 'bubble-other'}}">
+          <text wx:if="{{item.type === 'text'}}">{{item.content}}</text>
+          <image
+            wx:if="{{item.type === 'image'}}"
+            src="{{item.content}}"
+            class="bubble-image"
             mode="widthFix"
             bindtap="previewImg"
             data-src="{{item.content}}"
           ></image>
         </view>
-
       </view>
     </block>
 
-    <view style="height: 120rpx;"></view>
+    <view style="height: 140rpx;"></view>
     <view id="bottom-anchor"></view>
   </scroll-view>
 
-  <view class="input-area">
-    <input class="input-field" value="{{inputValue}}" bindinput="onInput" placeholder="发消息..." confirm-type="send" bindconfirm="sendMessage"/>
-    <button class="send-btn" size="mini" bindtap="sendMessage">发送</button>
+  <!-- 底部输入栏 -->
+  <view class="input-bar">
+    <van-icon name="audio" size="26px" color="#7d7d7d" bind:click="onVoiceClick" custom-class="bar-icon" />
+    <view class="input-wrap">
+      <input
+        class="input-field"
+        value="{{inputValue}}"
+        bindinput="onInput"
+        placeholder="请输入消息..."
+        placeholder-class="input-placeholder"
+        confirm-type="send"
+        bindconfirm="sendMessage"
+      />
+    </view>
+    <van-icon name="smile-o" size="26px" color="#7d7d7d" bind:click="onEmojiClick" custom-class="bar-icon" />
+    <van-icon name="photo-o" size="26px" color="#7d7d7d" bind:click="onImageClick" custom-class="bar-icon" />
+    <van-icon name="add-o" size="26px" color="#7d7d7d" bind:click="onMoreClick" custom-class="bar-icon" />
   </view>
 
 </view>

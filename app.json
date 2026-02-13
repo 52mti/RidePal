@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/message/message",
+		"pages/message/message",
+    "pages/select-location/select-location",
     "pages/chat/chat",
     "pages/contacts/contacts",
     "pages/contact-detail/contact-detail",
@@ -9,10 +10,7 @@
     "pages/me/me"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#EDEDED",
-    "navigationBarTitleText": "友邻顺路",
-    "navigationBarTextStyle": "black"
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "custom": true,

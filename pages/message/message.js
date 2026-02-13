@@ -5,7 +5,6 @@ Page({
   data: {
     msgList: [],
     loading: false,
-    finished: true,
   },
 
   onShow() {
@@ -31,51 +30,95 @@ Page({
     this.generateMockData()
   },
 
-  // 生成模拟数据
   generateMockData: function () {
-    let list = []
-    // 模拟20条数据，超过8条展示scroll-view效果
-    for (let i = 0; i < 20; i++) {
-      let type = 'private' // 默认私聊
-      let title = `友邻顺路车友 ${i + 1}号`
-      let content =
-        '你好，明天早上8点出发去软件园还有位置吗？如果没有的话我就自己开车了。'
-      let avatar = 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + i // 随机头像API
-
-      // 制造一些群聊
-      if (i % 3 === 0) {
-        type = 'group'
-        title = '软件园拼车大群 (500人)'
-        content = '张三: 还有人没上车吗？车主已经在楼下等了五分钟了，快点下来！'
-      }
-
-      // 制造一些广告
-      if (i === 2 || i === 8) {
-        type = 'ad'
-        title = '拼车优惠券助手'
-        content =
-          '双11特惠！拼车出行领5元无门槛红包，点击立即领取，仅限今天有效。'
-      }
-
-      list.push({
-        id: i,
-        type: type,
-        title: title,
-        avatarUrl: avatar,
-        content: content, // 这里故意弄长一点测试两行省略
-        updatedTime: i === 0 ? '刚刚' : i < 5 ? '12:30' : '昨天',
-        unread: i % 5 === 0 ? 1 : 0,
-      })
-    }
+    const list = [
+      {
+        id: 1,
+        type: 'private',
+        title: '张三',
+        tag: '拼车群主',
+        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhangsan',
+        content: '确认一下明天出发的具体位置吗？',
+        updatedTime: '01/01日 11:20',
+        unread: 2,
+      },
+      {
+        id: 2,
+        type: 'group',
+        title: '我的上班拼车群',
+        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=group1',
+        content: '李四：好的，没问题。',
+        updatedTime: '01/01日 11:20',
+        unread: 0,
+      },
+      {
+        id: 3,
+        type: 'dynamic',
+        title: '拼车动态',
+        plateNumber: '豫A 3i3il3',
+        carColor: '白色',
+        carModel: '凯美瑞',
+        departTime: '7:30',
+        updatedTime: '01/01日 11:20',
+        unread: 0,
+      },
+      {
+        id: 4,
+        type: 'private',
+        title: '李四',
+        tag: '',
+        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=lisi',
+        content: '好的，我现在在过去。大约2分钟到！',
+        updatedTime: '12/31日 09:15',
+        unread: 0,
+      },
+      {
+        id: 5,
+        type: 'group',
+        title: '软件园拼车大群',
+        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=group2',
+        content: '王五：还有人没上车吗？车主已经在楼下等了。',
+        updatedTime: '12/30日 18:00',
+        unread: 5,
+      },
+      {
+        id: 6,
+        type: 'private',
+        title: '王五',
+        tag: '车主',
+        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=wangwu',
+        content: '明天早上走高架还是走地面？高架快一点。',
+        updatedTime: '12/30日 16:30',
+        unread: 0,
+      },
+      {
+        id: 7,
+        type: 'dynamic',
+        title: '拼车动态',
+        plateNumber: '京B 88F56',
+        carColor: '黑色',
+        carModel: '大众帕萨特',
+        departTime: '8:00',
+        updatedTime: '12/29日 20:00',
+        unread: 0,
+      },
+      {
+        id: 8,
+        type: 'private',
+        title: '赵六',
+        avatarUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=zhaoliu',
+        content: '收到，谢谢！',
+        updatedTime: '12/28日 14:20',
+        unread: 0,
+      },
+    ]
     this.setData({ msgList: list })
   },
 
-  // 跳转详情
   goToChat: function (e) {
-    const id = e.currentTarget.dataset.id
-    const title = e.currentTarget.dataset.title
+    const { id, title, type } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/chat/chat?id=${id}&title=${title}`,
+      url: `/pages/chat/chat?id=${id}&title=${title}&type=${type || 'private'}`,
     })
   },
 })

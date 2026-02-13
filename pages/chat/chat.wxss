@@ -3,113 +3,185 @@ page {
   height: 100vh;
 }
 
-.chat-container {
+.chat-page {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* ===== 自定义导航栏 ===== */
+.nav-bar {
+  background-color: #ededed;
+}
+
+.nav-bar-inner {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===== 蓝色公告卡片 ===== */
+.announcement {
+  margin: 0 24rpx 16rpx;
+  padding: 24rpx 28rpx;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: #fff;
+}
+
+.announcement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.announcement-label {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.announcement-date {
+  font-size: 24rpx;
+  opacity: 0.85;
+}
+
+.announcement-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.announcement-text {
+  font-size: 24rpx;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* ===== 消息滚动区域 ===== */
 .scroll-box {
-  flex: 1; /* 占据剩余空间 */
-  height: 0; /* 必须配合 flex:1 */
+  flex: 1;
+  height: 0;
 }
 
 /* 时间戳 */
 .time-stamp {
   text-align: center;
-  font-size: 12px;
-  color: #b2b2b2;
-  margin: 20rpx 0;
+  margin: 24rpx 0;
 }
 
-/* 消息行基础样式 */
+.time-stamp-text {
+  font-size: 22rpx;
+  color: #b2b2b2;
+  background-color: #dadada;
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+/* ===== 消息行 ===== */
 .msg-row {
   display: flex;
-  margin-bottom: 30rpx;
-  padding: 0 20rpx;
+  margin-bottom: 32rpx;
+  padding: 0 24rpx;
   align-items: flex-start;
 }
 
 .avatar {
   width: 80rpx;
   height: 80rpx;
-  border-radius: 10rpx;
+  border-radius: 50%;
   background-color: #ccc;
   flex-shrink: 0;
 }
 
-/* 气泡容器 */
-.bubble-box {
-  max-width: 70%;
-  padding: 20rpx;
-  border-radius: 10rpx;
-  font-size: 16px;
-  line-height: 1.4;
-  position: relative;
-  word-wrap: break-word; /* 允许换行 */
+/* 气泡 */
+.bubble {
+  max-width: 65%;
+  padding: 20rpx 24rpx;
+  border-radius: 18rpx;
+  font-size: 30rpx;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 
-/* 对方发的消息样式 */
+/* 对方消息 */
 .msg-other {
   flex-direction: row;
 }
 
 .msg-other .avatar {
-  margin-right: 20rpx;
+  margin-right: 16rpx;
 }
 
-.msg-other .bubble-box {
-  background-color: #ffffff;
+.bubble-other {
+  background-color: #fff;
   color: #333;
+  border-top-left-radius: 6rpx;
 }
 
-/* 我发的消息样式 */
+/* 我的消息 */
 .msg-me {
-  flex-direction: row-reverse; /* 反转布局，头像在右 */
+  flex-direction: row-reverse;
 }
 
 .msg-me .avatar {
-  margin-left: 20rpx;
+  margin-left: 16rpx;
 }
 
-.msg-me .bubble-box {
-  background-color: #95ec69; /* 微信绿 */
+.bubble-me {
+  background-color: #95ec69;
   color: #000;
+  border-top-right-radius: 6rpx;
 }
 
 /* 图片消息 */
 .bubble-image {
-  max-width: 200rpx;
-  border-radius: 8rpx;
+  max-width: 300rpx;
+  border-radius: 12rpx;
 }
 
-/* 底部输入区 */
-.input-area {
-  background-color: #f7f7f7;
-  border-top: 1rpx solid #dcdcdc;
-  padding: 16rpx 20rpx;
-  padding-bottom: constant(safe-area-inset-bottom); /* 适配全面屏底部 */
-  padding-bottom: env(safe-area-inset-bottom);
+/* ===== 底部输入栏 ===== */
+.input-bar {
   display: flex;
   align-items: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+  padding-bottom: calc(16rpx + constant(safe-area-inset-bottom));
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background-color: #f7f7f7;
+  border-top: 1rpx solid #e0e0e0;
+}
+
+.bar-icon {
+  margin: 0 10rpx;
+  flex-shrink: 0;
+}
+
+.input-wrap {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 36rpx;
+  margin: 0 12rpx;
+  padding: 0 24rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
 }
 
 .input-field {
-  flex: 1;
-  background-color: #fff;
+  width: 100%;
   height: 72rpx;
-  border-radius: 10rpx;
-  padding: 0 20rpx;
-  margin-right: 20rpx;
+  font-size: 28rpx;
+  line-height: 72rpx;
 }
 
-.send-btn {
-  background-color: #07c160 !important;
-  color: white !important;
-  font-weight: 500;
-  margin: 0 !important;
+.input-placeholder {
+  color: #bbb;
+  font-size: 28rpx;
 }
