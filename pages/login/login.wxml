@@ -1,0 +1,91 @@
+<view class="page">
+  <custom-nav show-back bg-color="transparent" text-color="#fff" />
+
+  <!-- 顶部绿色区域 -->
+  <view class="hero">
+    <view class="logo-circle">
+      <image class="logo-img" src="/images/logo.png" mode="aspectFit" />
+    </view>
+    <text class="app-name">拼车一族</text>
+    <text class="app-slogan">和邻居一起拼车上下班</text>
+  </view>
+
+  <!-- 底部白色区域 -->
+  <view class="bottom-section">
+    <!-- 手机号快捷登录按钮 -->
+    <button
+      class="login-btn"
+      open-type="getPhoneNumber"
+      bindgetphonenumber="onGetPhoneNumber"
+    >手机号快捷登录</button>
+
+    <!-- 隐私协议 -->
+    <view class="agreement-row">
+      <van-checkbox
+        value="{{agreed}}"
+        bind:change="onAgreeChange"
+        checked-color="#07c160"
+        icon-size="16px"
+      />
+      <text class="agreement-text">已阅读并同意</text>
+      <text class="agreement-link" bindtap="openPrivacy">《隐私政策》</text>
+    </view>
+  </view>
+
+  <!-- 隐私政策弹窗 -->
+  <van-popup
+    show="{{showPrivacy}}"
+    round
+    closeable
+    position="bottom"
+    custom-style="height: 70vh;"
+    bind:close="closePrivacy"
+  >
+    <view class="privacy-popup">
+      <text class="privacy-title">隐私政策</text>
+      <scroll-view scroll-y class="privacy-content">
+        <text class="privacy-text">
+尊敬的用户：
+
+感谢您使用「拼车一族」（以下简称"本应用"）。我们深知个人信息对您的重要性，并会尽全力保护您的隐私安全。请您在使用我们的服务前，仔细阅读并了解本隐私政策。
+
+一、我们收集的信息
+
+1. 手机号码：用于注册登录与身份验证。
+2. 位置信息：用于为您匹配附近的拼车行程。
+3. 设备信息：用于保障账号安全与服务优化。
+
+二、信息的使用
+
+我们收集的信息仅用于以下目的：
+- 提供拼车匹配服务；
+- 行程安全保障与纠纷处理；
+- 改善产品体验与服务质量。
+
+三、信息的共享
+
+我们不会将您的个人信息出售给第三方。仅在以下情况下可能共享：
+- 获得您明确同意后；
+- 法律法规要求或政府机关依法要求时；
+- 为保护用户人身安全所必需时。
+
+四、信息的保护
+
+我们采用业界标准的安全技术措施来保护您的个人信息，防止未经授权的访问、披露、使用、修改或损坏。
+
+五、您的权利
+
+您有权随时查看、更正或删除您的个人信息，也可以撤回已授予的同意。如需行使上述权利，请联系我们的客服。
+
+六、政策更新
+
+我们可能会不时更新本隐私政策。更新后的政策将在应用内公布，建议您定期查看。
+
+如您对本隐私政策有任何疑问，请联系我们。
+
+最后更新日期：2025年12月25日
+        </text>
+      </scroll-view>
+    </view>
+  </van-popup>
+</view>
