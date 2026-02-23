@@ -14,6 +14,13 @@
   <view class="bottom-section">
     <!-- 手机号快捷登录按钮 -->
     <button
+      wx:if="{{!agreed}}"
+      class="login-btn"
+      bindtap="handleUnagreedLogin"
+    >手机号快捷登录</button>
+
+    <button
+      wx:else
       class="login-btn"
       open-type="getPhoneNumber"
       bindgetphonenumber="onGetPhoneNumber"

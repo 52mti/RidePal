@@ -8,12 +8,12 @@ Page({
     this.setData({ agreed: e.detail })
   },
 
-  onGetPhoneNumber(e) {
-    if (!this.data.agreed) {
-      wx.showToast({ title: '请先阅读并同意隐私政策', icon: 'none' })
-      return
-    }
+  handleUnagreedLogin() {
+    wx.showToast({ title: '请先阅读并同意隐私政策', icon: 'none' })
+  },
 
+  onGetPhoneNumber(e) {
+    console.log('onGetPhoneNumber', e)
     if (e.detail.errMsg === 'getPhoneNumber:ok') {
       // 获取到加密数据，发送到后端解密
       const { code, encryptedData, iv } = e.detail
@@ -28,6 +28,9 @@ Page({
     } else {
       wx.showToast({ title: '已取消授权', icon: 'none' })
     }
+    setTimeout(() => {
+      wx.switchTab({ url: '/pages/message/message' })
+    }, 1500)
   },
 
   openPrivacy() {
