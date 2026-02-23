@@ -1,5 +1,5 @@
 page {
-  background-color: #ededed;
+  background-color: #f6f7f9; /* Match nav background */
   height: 100vh;
 }
 
@@ -11,28 +11,29 @@ page {
 
 /* ===== 蓝色公告卡片 ===== */
 .announcement {
-  margin: 0 24rpx 16rpx;
-  padding: 24rpx 28rpx;
-  border-radius: 16rpx;
-  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  margin: 20rpx 30rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  background-color: #3b73ea; /* Match exact blue from image */
   color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(59, 115, 234, 0.2);
 }
 
 .announcement-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12rpx;
+  margin-bottom: 20rpx;
 }
 
 .announcement-label {
-  font-size: 28rpx;
-  font-weight: 600;
+  font-size: 30rpx;
+  font-weight: bold;
 }
 
 .announcement-date {
   font-size: 24rpx;
-  opacity: 0.85;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .announcement-body {
@@ -41,128 +42,121 @@ page {
 }
 
 .announcement-text {
-  font-size: 24rpx;
-  line-height: 1.6;
-  opacity: 0.95;
+  font-size: 26rpx;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ===== 消息滚动区域 ===== */
 .scroll-box {
   flex: 1;
   height: 0;
+  padding: 0 30rpx; /* Added padding to align with announcement card */
+  box-sizing: border-box;
 }
 
 /* 时间戳 */
 .time-stamp {
   text-align: center;
-  margin: 24rpx 0;
+  margin: 30rpx 0;
 }
 
 .time-stamp-text {
-  font-size: 22rpx;
-  color: #b2b2b2;
-  background-color: #dadada;
-  padding: 4rpx 16rpx;
-  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: #999;
+  background-color: #ebebeb;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx; /* Pill shape */
 }
 
 /* ===== 消息行 ===== */
 .msg-row {
   display: flex;
-  margin-bottom: 32rpx;
-  padding: 0 24rpx;
+  margin-bottom: 40rpx;
   align-items: flex-start;
 }
 
 .avatar {
   width: 80rpx;
   height: 80rpx;
-  border-radius: 50%;
-  background-color: #ccc;
+  border-radius: 8rpx; /* Slightly rounded square, not circular */
+  background-color: #e5e5e5;
   flex-shrink: 0;
 }
 
-/* 气泡 */
+/* 气泡通用样式 */
 .bubble {
   max-width: 65%;
-  padding: 20rpx 24rpx;
-  border-radius: 18rpx;
+  padding: 24rpx 30rpx;
   font-size: 30rpx;
-  line-height: 1.5;
+  line-height: 1.6;
   word-wrap: break-word;
+  position: relative; /* For the little triangle pointer if needed later */
 }
 
-/* 对方消息 */
+/* 对方消息 (左侧) */
 .msg-other {
-  flex-direction: row;
-}
-
-.msg-other .avatar {
-  margin-right: 16rpx;
+  justify-content: flex-start;
 }
 
 .bubble-other {
   background-color: #fff;
   color: #333;
-  border-top-left-radius: 6rpx;
+  margin-left: 20rpx;
+  border-radius: 4rpx 16rpx 16rpx 16rpx; /* Pointing left */
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.03);
 }
 
-/* 我的消息 */
+/* 我的消息 (右侧) */
 .msg-me {
-  flex-direction: row-reverse;
-}
-
-.msg-me .avatar {
-  margin-left: 16rpx;
+  justify-content: flex-end;
 }
 
 .bubble-me {
-  background-color: #95ec69;
-  color: #000;
-  border-top-right-radius: 6rpx;
-}
-
-/* 图片消息 */
-.bubble-image {
-  max-width: 300rpx;
-  border-radius: 12rpx;
+  background-color: #a9ea7a; /* Exact green from image */
+  color: #333;
+  margin-right: 20rpx;
+  border-radius: 16rpx 4rpx 16rpx 16rpx; /* Pointing right */
+  box-shadow: 0 2rpx 8rpx rgba(169, 234, 122, 0.2);
 }
 
 /* ===== 底部输入栏 ===== */
 .input-bar {
   display: flex;
   align-items: center;
-  padding: 16rpx 20rpx;
-  padding-bottom: calc(16rpx + constant(safe-area-inset-bottom));
-  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
-  background-color: #f7f7f7;
-  border-top: 1rpx solid #e0e0e0;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background-color: #fff; /* White background */
+  border-top: 1rpx solid #f0f0f0;
 }
 
-.bar-icon {
-  margin: 0 10rpx;
-  flex-shrink: 0;
+.icon-mic {
+  margin-right: 20rpx;
+}
+
+.icon-action {
+  margin-left: 20rpx;
 }
 
 .input-wrap {
   flex: 1;
-  background-color: #fff;
-  border-radius: 36rpx;
-  margin: 0 12rpx;
-  padding: 0 24rpx;
-  height: 72rpx;
+  background-color: #f4f5f7; /* Light gray input background */
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  height: 76rpx;
   display: flex;
   align-items: center;
 }
 
 .input-field {
   width: 100%;
-  height: 72rpx;
-  font-size: 28rpx;
-  line-height: 72rpx;
+  height: 76rpx;
+  font-size: 30rpx;
+  line-height: 76rpx;
+  color: #333;
 }
 
 .input-placeholder {
-  color: #bbb;
-  font-size: 28rpx;
+  color: #b3b3b3;
+  font-size: 30rpx;
 }

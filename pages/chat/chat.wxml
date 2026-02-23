@@ -1,14 +1,12 @@
 <view class="chat-page">
 
-  <!-- Scenario B: Back Arrow | Title | Right Icon -->
   <custom-nav
     title="{{chatTitle}}"
     show-back
-    bg-color="#ededed"
+    bg-color="#f6f7f9"
     bind:back="goBack"
   />
 
-  <!-- 蓝色公告卡片（动态类型显示） -->
   <view class="announcement" wx:if="{{isDynamic}}">
     <view class="announcement-header">
       <text class="announcement-label">公告：拼车动态</text>
@@ -20,7 +18,6 @@
     </view>
   </view>
 
-  <!-- 消息区域 -->
   <scroll-view
     class="scroll-box"
     scroll-y
@@ -30,28 +27,25 @@
     scroll-into-view="{{toViewId}}"
     scroll-with-animation="{{false}}"
   >
-    <view style="height: 20rpx;"></view>
-
     <block wx:for="{{messages}}" wx:key="id">
-      <!-- 时间戳 -->
       <view class="time-stamp" wx:if="{{item.showTime}}">
         <text class="time-stamp-text">{{item.displayTime}}</text>
       </view>
 
-      <!-- 消息行 -->
       <view id="msg-{{item.id}}" class="msg-row {{item.isMe ? 'msg-me' : 'msg-other'}}">
-        <image class="avatar" src="{{item.avatar}}"></image>
-        <view class="bubble {{item.isMe ? 'bubble-me' : 'bubble-other'}}">
-          <text wx:if="{{item.type === 'text'}}">{{item.content}}</text>
-          <image
-            wx:if="{{item.type === 'image'}}"
-            src="{{item.content}}"
-            class="bubble-image"
-            mode="widthFix"
-            bindtap="previewImg"
-            data-src="{{item.content}}"
-          ></image>
-        </view>
+        <block wx:if="{{item.isMe}}">
+           <view class="bubble bubble-me">
+            <text wx:if="{{item.type === 'text'}}">{{item.content}}</text>
+            </view>
+          <image class="avatar" src="{{item.avatar}}"></image>
+        </block>
+        
+        <block wx:else>
+          <image class="avatar" src="{{item.avatar}}"></image>
+          <view class="bubble bubble-other">
+            <text wx:if="{{item.type === 'text'}}">{{item.content}}</text>
+             </view>
+        </block>
       </view>
     </block>
 
@@ -59,9 +53,8 @@
     <view id="bottom-anchor"></view>
   </scroll-view>
 
-  <!-- 底部输入栏 -->
   <view class="input-bar">
-    <van-icon name="audio" size="26px" color="#7d7d7d" bind:click="onVoiceClick" custom-class="bar-icon" />
+    <van-icon name="microphone" size="28px" color="#7a7f85" bind:click="onVoiceClick" class="icon-mic" />
     <view class="input-wrap">
       <input
         class="input-field"
@@ -73,9 +66,8 @@
         bindconfirm="sendMessage"
       />
     </view>
-    <van-icon name="smile-o" size="26px" color="#7d7d7d" bind:click="onEmojiClick" custom-class="bar-icon" />
-    <van-icon name="photo-o" size="26px" color="#7d7d7d" bind:click="onImageClick" custom-class="bar-icon" />
-    <van-icon name="add-o" size="26px" color="#7d7d7d" bind:click="onMoreClick" custom-class="bar-icon" />
+    <van-icon name="smile-o" size="28px" color="#7a7f85" bind:click="onEmojiClick" class="icon-action" />
+    <van-icon name="add" size="28px" color="#7a7f85" bind:click="onMoreClick" class="icon-action" />
   </view>
 
 </view>
