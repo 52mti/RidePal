@@ -1,59 +1,50 @@
 const serviceBehavior = require('../../behaviors/service-popup')
+
 Page({
   behaviors: [serviceBehavior],
   data: {
-    activeTab: 2, // 默认选中"服务" (索引从0开始，信息0, 通讯录1, 服务2, 我3)
+    activeTab: 2, // 默认选中"服务" 
     showServiceMenu: false, // 控制底部弹窗
+    activeDateTab: 0, // 0: 今天发车, 1: 明天发车
 
-    // 筛选状态
-    filter: {
-      start: '',
-      end: '',
-      time: '',
-    },
-
-    // 服务频道配置 (预留配置入口，支持Scroll)
-    services: [
-      { id: 1, name: '拼车', icon: 'logistics' }, // 使用vant内置图标模拟
-      { id: 2, name: '同城货运', icon: 'shop-collect-o' },
-      { id: 3, name: '顺风车', icon: 'guide-o' },
-      { id: 4, name: '代驾', icon: 'manager-o' },
-      { id: 5, name: '租车', icon: 'logistics' },
-      { id: 6, name: '二手车', icon: 'cart-o' },
-      { id: 7, name: '车辆保养', icon: 'setting-o' },
-      { id: 8, name: '违章查询', icon: 'warn-o' },
-      // 测试滚动功能：第9个之后的项目需要滚动才能看到
-      { id: 9, name: '加油优惠', icon: 'fire-o' },
-      { id: 10, name: 'ETC办理', icon: 'card-o' },
-    ],
-
-    // 拼车列表数据模拟
+    // 完美匹配截图的数据结构
     carpoolList: [
       {
-        id: 101,
-        avatar: '/static/avatar1.png', // 请替换为本地图片或网络图片
-        nickname: '老王车队',
-        remark: '准时出发',
+        id: 1,
+        avatar: '/static/avatar-wang.png', // 替换为你的本地头像路径
+        nickname: '王先生',
         time: '12:20',
-        seatsTaken: 4,
-        seatsTotal: 5,
-        startPoint: '万达广场(北门)',
-        wayPoint: '高速路口',
-        endPoint: '滨海新区政府',
+        startPoint: '理想成八期西门, 地安门',
+        endPoint: '天安门广场, 复兴门',
+        price: '25',
+        status: 'normal',
+        statusText: '差1人',
+        statusClass: 'tag-orange' // 橘色标签
       },
       {
-        id: 102,
-        avatar: '/static/avatar2.png',
-        nickname: '李师傅',
-        remark: '拒载醉酒',
-        time: '13:00',
-        seatsTaken: 1,
-        seatsTotal: 4,
-        startPoint: '火车站',
-        wayPoint: '',
-        endPoint: '大学城',
+        id: 2,
+        avatar: '/static/avatar-chen.png',
+        nickname: '陈女士',
+        time: '07:30',
+        startPoint: '西红门医院南门',
+        endPoint: '德胜门外大街, 积水潭',
+        price: '30',
+        status: 'normal',
+        statusText: '差3人',
+        statusClass: 'tag-green' // 绿色标签
       },
-      // 更多数据...
+      {
+        id: 3,
+        avatar: '/static/avatar-zhang.png',
+        nickname: '张师傅',
+        time: '08:15',
+        startPoint: '广安门内大街',
+        endPoint: '北京南站, 永定门',
+        price: '20',
+        status: 'full', // 控制时间变灰
+        statusText: '已满',
+        statusClass: 'tag-gray' // 灰色标签
+      }
     ],
   },
 
@@ -63,19 +54,26 @@ Page({
     }
   },
 
-  onLoad() {},
-
-  // 顶部筛选逻辑
-  onFilterLocation() {
-    wx.showToast({ title: '打开地点选择器', icon: 'none' })
-    // 实际开发中这里应弹出 van-popup 展示详细的地点输入框
+  // 切换今天/明天
+  onSwitchDate(e) {
+    const index = parseInt(e.currentTarget.dataset.index);
+    this.setData({ activeDateTab: index });
+    // TODO: 可以在这里请求对应日期的数据
   },
 
+  // 点击时间筛选
   onFilterTime() {
     wx.showToast({ title: '打开时间选择器', icon: 'none' })
   },
 
+  // 点击高级筛选
   onOpenMoreFilters() {
     wx.showToast({ title: '打开高级筛选', icon: 'none' })
   },
+
+  // 点击悬浮加号发布
+  onPublish() {
+    wx.showToast({ title: '跳转发布行程页面', icon: 'none' })
+    // wx.navigateTo({ url: '/pages/publish/publish' })
+  }
 })
