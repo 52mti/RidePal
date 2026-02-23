@@ -1,80 +1,98 @@
-/* 页面全局背景色 */
 page {
-  background-color: #f7f8fa;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  background-color: #F6F7F9;
 }
 
 .page-container {
-  padding-bottom: 50rpx;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 20rpx; /* 距离顶部的间隙 */
 }
 
-/* 1. 用户头部样式 */
-.user-header {
-  background-color: #ffffff;
+/* ===== 1. 用户资料卡片 ===== */
+.user-card {
+  background-color: #fff;
+  margin: 0 32rpx 30rpx;
   padding: 40rpx 30rpx;
-  margin-bottom: 20rpx;
-}
-
-.user-info-box {
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
 }
 
-.avatar-box {
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 16rpx; /* 从圆形改为带圆角的方形 */
+  background-color: #cce5ff; /* 占位底色 */
   margin-right: 30rpx;
+  flex-shrink: 0;
 }
 
-.info-content {
+.info-box {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.name-row {
-  display: flex;
-  align-items: center;
+.name {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #111;
   margin-bottom: 12rpx;
 }
 
-.nickname {
-  font-size: 36rpx;
-  font-weight: 600;
-  color: #323233;
-  margin-right: 16rpx;
+.account {
+  font-size: 26rpx;
+  color: #888;
 }
 
-/* 调整 Vant 标签的微调 */
-.user-tag {
-  border-radius: 6rpx !important;
+/* ===== 2. 菜单组统一样式 ===== */
+.menu-group {
+  margin-bottom: 24rpx !important;
 }
 
-.id-row {
+/* 加大单元格的内边距，使其看起来更舒展 */
+.menu-cell {
+  padding: 30rpx 32rpx !important;
+  align-items: center !important;
+}
+
+/* 图标容器样式 */
+.cell-icon {
+  margin-right: 24rpx;
   display: flex;
   align-items: center;
-  font-size: 24rpx;
-  color: #969799;
 }
 
-.user-id {
-  margin-right: 16rpx;
+/* 覆盖 Vant cell 内部的文字样式 */
+.van-cell__title {
+  font-size: 30rpx !important;
+  color: #333;
 }
 
-/* 复制按钮微调 */
-.copy-btn {
-  height: 36rpx !important;
-  line-height: 34rpx !important;
-  padding: 0 16rpx !important;
-  font-size: 20rpx !important;
+.van-cell__value {
+  font-size: 26rpx !important;
+  color: #999;
 }
 
-/* 2. 区块容器样式 (用于 Grid 和 CellGroup) */
-.section-box {
-  margin-top: 24rpx;
+/* ===== 3. 悬浮按钮 ===== */
+.fab-button {
+  position: fixed;
+  right: 40rpx;
+  bottom: calc(140rpx + env(safe-area-inset-bottom));
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  z-index: 99;
 }
 
-/* 覆盖 Vant Grid 的背景，使其与 CellGroup 统一风格（可选） */
-.van-grid {
-  background-color: #ffffff;
-  padding: 20rpx 0;
+/* 底部留白，防止内容被 Tabbar 挡住 */
+.bottom-spacer {
+  height: 180rpx;
 }

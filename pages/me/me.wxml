@@ -1,59 +1,51 @@
 <view class="page-container">
   <custom-nav title="我的" bg-color="#F6F7F9" />
 
-  <view class="user-header">
-    <view class="user-info-box">
-      <view class="avatar-box">
-        <van-image 
-          round 
-          width="120rpx" 
-          height="120rpx" 
-          src="https://img.yzcdn.cn/vant/cat.jpeg" 
-        />
-      </view>
-      <view class="info-content">
-        <view class="name-row">
-          <text class="nickname">微信用户</text>
-          <van-tag type="primary" plain size="medium" custom-class="user-tag">普通用户</van-tag>
-        </view>
-        <view class="id-row">
-          <text class="user-id">账号: 138****8888</text>
-          <van-button size="mini" round plain type="default" custom-class="copy-btn">复制</van-button>
-        </view>
-      </view>
-      <view class="arrow-box">
-        <van-icon name="arrow" color="#969799" />
-      </view>
+  <view class="user-card">
+    <image class="avatar" src="/static/avatar-boy.png" mode="aspectFill"></image>
+    <view class="info-box">
+      <view class="name">昵称 / 备注名</view>
+      <view class="account">账号: 13888888888</view>
     </view>
+    <van-icon name="arrow" color="#c8c9cc" size="16px" />
   </view>
 
-  <view class="section-box">
-    <van-grid column-num="4" border="{{ false }}">
-      <van-grid-item icon="logistics" text="车辆维护" />
-      <van-grid-item icon="guide-o" text="发车维护" />
-      <van-grid-item icon="friends-o" text="坐车信息" />
-      <van-grid-item icon="chart-trending-o" text="动态展示" />
-    </van-grid>
+  <van-cell-group inset custom-class="menu-group">
+    <van-cell title="个人信息" is-link custom-class="menu-cell">
+      <van-icon slot="icon" name="user-o" color="#3b73ea" size="20px" custom-class="cell-icon" />
+    </van-cell>
+    <van-cell title="行程信息" is-link custom-class="menu-cell">
+      <van-icon slot="icon" name="logistics" color="#ff8917" size="20px" custom-class="cell-icon" />
+    </van-cell>
+    <van-cell title="车辆信息" is-link custom-class="menu-cell">
+      <van-icon slot="icon" name="guide-o" color="#07c160" size="20px" custom-class="cell-icon" />
+    </van-cell>
+    <van-cell title="位置信息" is-link border="{{ false }}" custom-class="menu-cell">
+      <van-icon slot="icon" name="location-o" color="#ee0a24" size="20px" custom-class="cell-icon" />
+    </van-cell>
+  </van-cell-group>
+
+  <van-cell-group inset custom-class="menu-group">
+    <van-cell title="资产" value="余额: ¥88.88" is-link border="{{ false }}" custom-class="menu-cell">
+      <van-icon slot="icon" name="balance-o" color="#ff8917" size="20px" custom-class="cell-icon" />
+    </van-cell>
+  </van-cell-group>
+
+  <van-cell-group inset custom-class="menu-group">
+    <van-cell title="提供服务 (增值功能)" is-link border="{{ false }}" custom-class="menu-cell">
+      <van-icon slot="icon" name="service-o" color="#07c160" size="20px" custom-class="cell-icon" />
+    </van-cell>
+  </van-cell-group>
+
+  <view class="fab-button">
+    <van-icon name="moon-o" size="20px" color="#333" />
   </view>
 
-  <view class="section-box">
-    <van-cell-group inset>
-      <van-cell title="开车记录" icon="notes-o" is-link />
-      <van-cell title="坐车记录" icon="records" is-link />
-    </van-cell-group>
-  </view>
-
-  <view class="section-box">
-    <van-cell-group inset>
-      <van-cell title="更新广告" icon="bullhorn-o" is-link value="查看详情" />
-      <van-cell title="联系客服" icon="service-o" is-link />
-    </van-cell-group>
-  </view>
+  <view class="bottom-spacer"></view>
 
   <service-menu-modal 
     show="{{ showServiceMenu }}" 
     bind:close="onCloseServiceMenu" 
     bind:select="onSelectService"
   />
-
 </view>
