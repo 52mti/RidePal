@@ -5,6 +5,7 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  background-color: #F6F7F9; /* 统一整体底色 */
 }
 
 .contact-list {
@@ -14,15 +15,46 @@
   padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
 }
 
+/* 调整头像，图片上的头像更大一些 */
 .avatar-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  margin-right: 10px;
+  width: 48px;  /* 从36px放大 */
+  height: 48px;
+  border-radius: 6px; /* 增加一点圆角 */
+  margin-right: 12px;
   background-color: #eee;
 }
 
-/* 覆盖 Vant 样式以匹配微信风格 */
+/* 新增：联系人文本信息容器 */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 新增：联系人名称样式 */
+.contact-name {
+  font-size: 16px;
+  color: #333;
+  line-height: 22px;
+}
+
+/* 新增：广告语小字样式 */
+.contact-slogan {
+  font-size: 13px;
+  color: #888; /* 灰色字 */
+  line-height: 18px;
+  margin-top: 4px;
+}
+
+/* 新增：底部总人数样式 */
+.contact-count {
+  text-align: center;
+  font-size: 14px;
+  color: #A3A3A3;
+  padding: 30rpx 0 40rpx 0;
+}
+
+/* ---------------- 覆盖 Vant 样式 ---------------- */
 .van-nav-bar__text {
   color: #1aad19 !important; /* 微信绿 */
 }
@@ -32,7 +64,15 @@
 .van-checkbox {
   height: 100%;
 }
+
+/* * 【重要修改】 
+ * 注释或删除掉之前的 display: flex; align-items: center;
+ * 否则会导致上面自定义的 名字 和 广告语 变成同一行显示
+ */
 .van-cell__title {
-  display: flex;
-  align-items: center;
+  display: block !important; 
+}
+
+.van-cell__title:empty, .van-cell__value:empty {
+  display: none !important;
 }

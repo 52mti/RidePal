@@ -12,14 +12,22 @@
     <van-cell
       wx:for="{{ contactList }}"
       wx:key="id"
-      title="{{ item.name + (item.note ? ' (' + item.note + ')' : '') }}"
       clickable
       data-id="{{ item.id }}"
       bind:click="onClickContact"
+      center
     >
       <image slot="icon" src="{{item.avatar}}" class="avatar-icon" />
+      
+      <view slot="title" class="contact-info">
+        <view class="contact-name">{{ item.name }}</view>
+        <view class="contact-slogan">广告语：{{ item.slogan || '专业跑上海到安徽的拼车' }}</view>
+      </view>
     </van-cell>
-    
+
+    <view class="contact-count" wx:if="{{ contactList.length > 0 }}">
+      {{ contactList.length }}位联系人
+    </view>
   </scroll-view>
 
   <service-menu-modal 
