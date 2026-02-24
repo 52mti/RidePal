@@ -11,7 +11,7 @@ Page({
     carpoolList: [
       {
         id: 1,
-        avatar: '/static/avatar-wang.png', // 替换为你的本地头像路径
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=1', // 替换为你的本地头像路径
         nickname: '王先生',
         time: '12:20',
         startPoint: '理想成八期西门, 地安门',
@@ -23,7 +23,7 @@ Page({
       },
       {
         id: 2,
-        avatar: '/static/avatar-chen.png',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=2',
         nickname: '陈女士',
         time: '07:30',
         startPoint: '西红门医院南门',
@@ -35,7 +35,7 @@ Page({
       },
       {
         id: 3,
-        avatar: '/static/avatar-zhang.png',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=3',
         nickname: '张师傅',
         time: '08:15',
         startPoint: '广安门内大街',

@@ -2,7 +2,7 @@
   <custom-nav title="详细资料" show-back bg-color="#F6F7F9" />
 
   <view class="profile-header">
-    <image class="avatar" src="/static/avatar-female.png" mode="aspectFill"></image>
+    <image class="avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=4" mode="aspectFill"></image>
     <view class="info-box">
       <view class="name">人名称/备注</view>
       <view class="sub-text">昵称：张小车</view>
@@ -42,10 +42,6 @@
     <view class="action-btn" bindtap="onSendMessage">
       <van-icon name="chat" size="20px" color="#07c160" />
       <text class="btn-text">发消息</text>
-    </view>
-    <view class="action-btn" bindtap="onCall">
-      <van-icon name="video" size="20px" color="#07c160" />
-      <text class="btn-text">音视频通话</text>
     </view>
   </view>
 </view>
