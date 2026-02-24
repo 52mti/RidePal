@@ -1,0 +1,123 @@
+<view class="container">
+  <custom-nav title="发布开车行程" showBack="true" bg-color="#ffffff" text-color="#000000" />
+
+  <view class="card location-card">
+    <view class="location-row" bindtap="handleSelectStart">
+      <view class="dot bg-orange"></view>
+      <view class="location-info">
+        <text class="city-text">{{startLocation.city}}</text>
+        <text class="address-text">{{startLocation.name}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+    
+    <view class="divider"></view>
+    
+    <view class="location-row" bindtap="handleSelectEnd">
+      <view class="dot bg-orange"></view>
+      <view class="location-info">
+        <text class="city-text">{{endLocation.city}}</text>
+        <text class="address-text">{{endLocation.name}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+
+    <view class="swap-btn" bindtap="handleSwapLocation">
+      <van-icon name="exchange" color="#FF8C00" size="18px" class="swap-icon" />
+    </view>
+  </view>
+
+  <view class="card waypoint-card">
+    <view class="card-title">途经点</view>
+    <view class="waypoint-row" bindtap="handleSelectWayUp">
+      <view class="icon-circle icon-up">上</view>
+      <view class="waypoint-info">
+        <text class="waypoint-text {{waypointUp ? 'text-black' : 'text-gray'}}">{{waypointUp || '请选择上车点'}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+    
+    <view class="waypoint-row mt-20" bindtap="handleSelectWayDown">
+      <view class="icon-circle icon-down">下</view>
+      <view class="waypoint-info">
+        <text class="waypoint-text {{waypointDown ? 'text-black' : 'text-gray'}}">{{waypointDown || '请选择下车点'}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+  </view>
+
+  <view class="card time-card">
+    <view class="card-title">出发时间</view>
+    
+    <view class="time-row" bindtap="handleSelectDate">
+      <van-icon name="calendar-o" color="#999" size="20px" class="row-icon" />
+      <view class="time-info">
+        <text class="time-label">选择日期</text>
+        <text class="time-value">{{date}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+
+    <view class="time-row mt-30" bindtap="handleSelectTime">
+      <van-icon name="clock-o" color="#999" size="20px" class="row-icon" />
+      <view class="time-info">
+        <text class="time-label">选择时间</text>
+        <text class="time-value">{{time}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+
+    <view class="time-row mt-30" bindtap="handleSelectFrequency">
+      <van-icon name="replay" color="#999" size="20px" class="row-icon" />
+      <view class="frequency-info">
+        <text class="frequency-text">{{frequency}}</text>
+        <view class="tag-new">NEW</view>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+  </view>
+
+  <view class="card option-card">
+    <view class="card-title">座位及价格</view>
+    <view class="option-row">
+      <view class="option-item" bindtap="handleSelectSeats">
+        <van-icon name="logistics" color="#999" size="20px" class="row-icon" />
+        <text class="option-value">{{seats}}个座位</text>
+        <van-icon name="arrow" color="#ccc" size="16px" />
+      </view>
+      <view class="vertical-divider"></view>
+      <view class="option-item" bindtap="handleSelectPrice">
+        <van-icon name="balance-o" color="#999" size="20px" class="row-icon" />
+        <text class="option-value">{{price}}元/位</text>
+        <van-icon name="arrow" color="#ccc" size="16px" />
+      </view>
+    </view>
+  </view>
+
+  <view class="card remark-card">
+    <view class="card-title">备注</view>
+    <view class="textarea-box">
+      <textarea 
+        class="remark-input" 
+        placeholder="请补充行程相关备注信息" 
+        placeholder-class="placeholder-style"
+        value="{{remark}}"
+        bindinput="onRemarkInput"
+        maxlength="200"
+        disable-default-padding
+        cursor-spacing="80"
+      ></textarea>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <van-button 
+      type="primary" 
+      block 
+      color="#FF8C00" 
+      custom-class="publish-btn"
+      bind:click="handlePublish"
+    >发布</van-button>
+  </view>
+
+</view>

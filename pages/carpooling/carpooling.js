@@ -74,6 +74,6 @@ Page({
   // 点击悬浮加号发布
   onPublish() {
     wx.showToast({ title: '跳转发布行程页面', icon: 'none' })
-    // wx.navigateTo({ url: '/pages/publish/publish' })
+    wx.navigateTo({ url: '/pages/publish-ride/publish-ride' })
   }
 })

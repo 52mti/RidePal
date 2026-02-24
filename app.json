@@ -8,7 +8,12 @@
     "pages/contact-detail/contact-detail",
     "pages/select-contact/select-contact",
     "pages/carpooling/carpooling",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/trip-list/trip-list",
+    "pages/trip-detail/trip-detail",
+    "pages/drive-detail/drive-detail",
+    "pages/ride-detail/ride-detail",
+    "pages/publish-ride/publish-ride"
   ],
   "window": {
     "navigationStyle": "custom"
