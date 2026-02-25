@@ -46,6 +46,108 @@ Page({
         statusClass: 'tag-gray' // 灰色标签
       }
     ],
+
+    // 控制弹窗显示隐藏
+    showFilterPopup: false,
+
+    // 筛选数据源
+    filterDates: [], 
+    filterHours: [],
+    filterMinutes: ['00', '15', '30', '45'], // 15分钟间隔
+
+    // 当前选中的值
+    selectedDateIndex: 0,
+    selectedHour: '00',
+    selectedMinute: '00',
+  },
+
+  onLoad() {
+    this.initFilterData();
+  },
+
+  // === 1. 初始化筛选器数据 ===
+  initFilterData() {
+    // 1. 生成日期 (今天 + 未来3天)
+    const dates = [];
+    const today = new Date();
+    for (let i = 0; i < 4; i++) {
+      const targetDate = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
+      const month = targetDate.getMonth() + 1;
+      const day = targetDate.getDate();
+      
+      dates.push({
+        id: i,
+        label: i === 0 ? '今天' : `${month}月${day}日`,
+        fullDate: targetDate // 留存完整日期对象备用
+      });
+    }
+
+    // 2. 生成小时 (00 - 23)
+    const hours = [];
+    for (let i = 0; i < 24; i++) {
+      hours.push(i.toString().padStart(2, '0'));
+    }
+
+    this.setData({
+      filterDates: dates,
+      filterHours: hours
+    });
+  },
+
+  // === 2. 弹窗控制 ===
+  openFilterPopup() {
+    this.setData({ showFilterPopup: true });
+
+    // 隐藏自定义 TabBar
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({ show: false });
+    }
+  },
+
+  closeFilter() {
+    this.setData({ showFilterPopup: false });
+
+    // 恢复显示自定义 TabBar
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({ show: true });
+    }
+  },
+
+  // === 3. 选择交互 ===
+  onSelectFilterDate(e) {
+    this.setData({ selectedDateIndex: e.currentTarget.dataset.index });
+  },
+
+  onSelectFilterHour(e) {
+    this.setData({ selectedHour: e.currentTarget.dataset.val });
+  },
+
+  onSelectFilterMinute(e) {
+    this.setData({ selectedMinute: e.currentTarget.dataset.val });
+  },
+
+  // === 4. 底部按钮交互 ===
+  resetFilter() {
+    this.setData({
+      selectedDateIndex: 0,
+      selectedHour: '00',
+      selectedMinute: '00'
+    });
+    wx.showToast({ title: '已重置', icon: 'none' });
+  },
+
+  saveFilter() {
+    const { filterDates, selectedDateIndex, selectedHour, selectedMinute } = this.data;
+    const chosenDateObj = filterDates[selectedDateIndex];
+    
+    // 组装结果，打印检查
+    const resultTime = `${chosenDateObj.label} ${selectedHour}:${selectedMinute}`;
+    console.log('保存的筛选时间：', resultTime);
+
+    wx.showToast({ title: '保存成功', icon: 'success' });
+    this.closeFilter();
+    
+    // TODO: 在这里触发列表接口刷新，携带筛选参数
   },
 
   onShow() {
@@ -64,11 +166,6 @@ Page({
   // 点击时间筛选
   onFilterTime() {
     wx.showToast({ title: '打开时间选择器', icon: 'none' })
-  },
-
-  // 点击高级筛选
-  onOpenMoreFilters() {
-    wx.showToast({ title: '打开高级筛选', icon: 'none' })
   },
 
   // 点击悬浮加号发布

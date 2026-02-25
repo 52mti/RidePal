@@ -13,7 +13,7 @@
       <van-icon name="clock-o" color="#999" size="16px" />
       <text class="placeholder">选择开车时间</text>
     </view>
-    <view class="filter-btn" bindtap="onOpenMoreFilters">
+    <view class="filter-btn" bindtap="openFilterPopup">
       <van-icon name="setting-o" size="20px" color="#666" />
     </view>
   </view>
@@ -46,7 +46,7 @@
               <text class="address-text">{{item.endPoint}}</text>
             </view>
             <view class="route-right">
-              <view class="price"><text class="currency">¥</text>{{item.price}}<text class="unit">/人</text></view>
+              <view class="price">¥{{item.price}}<text class="unit">/人</text></view>
             </view>
           </view>
         </view>
@@ -66,3 +66,87 @@
     bind:select="onSelectService"
   />
 </view>
+
+<page-container 
+  show="{{ showFilterPopup }}" 
+  position="right" 
+  custom-style="z-index: 999; height: 100vh; background-color: #F6F7F9;"
+  bind:clickoverlay="closeFilter" 
+  bind:leave="closeFilter"
+>
+  <view class="filter-popup-container">
+    
+    <view class="filter-header">
+      <view class="header-btn cancel" bindtap="closeFilter">取消</view>
+      <view class="header-title">高级筛选</view>
+      <view class="header-btn placeholder"></view>
+    </view>
+
+    <scroll-view scroll-y class="filter-scroll-content">
+      
+      <view class="section-title">开始时间</view>
+      
+      <view class="time-section-card">
+        <view class="date-filter-tabs">
+          <view 
+            class="date-item {{ selectedDateIndex === index ? 'date-active' : '' }}" 
+            wx:for="{{ filterDates }}" 
+            wx:key="id"
+            bindtap="onSelectFilterDate"
+            data-index="{{ index }}"
+          >
+            {{ item.label }}
+          </view>
+        </view>
+
+        <view class="time-picker-columns">
+          <scroll-view scroll-y class="time-col border-right">
+            <view 
+              class="time-cell {{ selectedHour === item ? 'time-active' : '' }}" 
+              wx:for="{{ filterHours }}" 
+              wx:key="*this"
+              bindtap="onSelectFilterHour"
+              data-val="{{ item }}"
+            >
+              {{ item }}
+            </view>
+          </scroll-view>
+
+          <scroll-view scroll-y class="time-col">
+            <view 
+              class="time-cell {{ selectedMinute === item ? 'time-active' : '' }}" 
+              wx:for="{{ filterMinutes }}" 
+              wx:key="*this"
+              bindtap="onSelectFilterMinute"
+              data-val="{{ item }}"
+            >
+              {{ item }}
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+
+      <view class="section-title mt-40">位置选择</view>
+      
+      <view class="location-card">
+        <view class="loc-row">
+          <view class="loc-dot dot-start"></view>
+          <text class="loc-text text-black">理想城八期西门</text>
+        </view>
+        <view class="loc-divider"></view>
+        <view class="loc-row">
+          <view class="loc-dot dot-end"></view>
+          <text class="loc-text text-gray">终点</text>
+        </view>
+      </view>
+
+      <view class="bottom-placeholder"></view>
+    </scroll-view>
+
+    <view class="filter-footer-bar">
+      <view class="btn btn-reset" bindtap="resetFilter">重置</view>
+      <view class="btn btn-save" bindtap="saveFilter">保存筛选</view>
+    </view>
+
+  </view>
+</page-container>

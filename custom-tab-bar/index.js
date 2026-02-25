@@ -1,6 +1,7 @@
 Component({
   data: {
     active: 0,
+    show: true,
     list: [
       "/pages/message/message",
       "/pages/contacts/contacts",
