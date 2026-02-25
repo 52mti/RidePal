@@ -100,9 +100,9 @@
         </view>
 
         <view class="time-picker-columns">
-          <scroll-view scroll-y class="time-col border-right">
+          <scroll-view scroll-y class="time-col border-right" show-scrollbar="{{false}}">
             <view 
-              class="time-cell {{ selectedHour === item ? 'time-active' : '' }}" 
+              class="time-cell {{ selectedHour === item ? 'time-option-active' : '' }}" 
               wx:for="{{ filterHours }}" 
               wx:key="*this"
               bindtap="onSelectFilterHour"
@@ -114,7 +114,7 @@
 
           <scroll-view scroll-y class="time-col">
             <view 
-              class="time-cell {{ selectedMinute === item ? 'time-active' : '' }}" 
+              class="time-cell {{ selectedMinute === item ? 'time-option-active' : '' }}" 
               wx:for="{{ filterMinutes }}" 
               wx:key="*this"
               bindtap="onSelectFilterMinute"

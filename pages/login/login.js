@@ -23,13 +23,13 @@ Page({
       wx.showToast({ title: '登录成功', icon: 'success' })
 
       setTimeout(() => {
-        wx.switchTab({ url: '/pages/message/message' })
+        wx.navigateTo({ url: '/pages/set-location/set-location' })
       }, 1500)
     } else {
       wx.showToast({ title: '已取消授权', icon: 'none' })
     }
     setTimeout(() => {
-      wx.switchTab({ url: '/pages/message/message' })
+      wx.navigateTo({ url: '/pages/set-location/set-location' })
     }, 1500)
   },
 

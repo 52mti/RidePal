@@ -1,0 +1,150 @@
+page {
+  background-color: #F8F9FA;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* 头部文案 */
+.header-section {
+  margin-top: 60rpx; /* 距离胶囊下方再留一点空间 */
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title {
+  font-size: 44rpx;
+  font-weight: 900;
+  color: #111111;
+  margin-bottom: 24rpx;
+  letter-spacing: 2rpx;
+}
+
+.sub-title {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* 中间插图 */
+.illustration-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100rpx 0;
+}
+
+.icon-circle {
+  width: 180rpx;
+  height: 180rpx;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 16rpx 40rpx rgba(255, 140, 0, 0.1);
+  position: relative;
+}
+
+.car-badge {
+  position: absolute;
+  top: 10rpx;
+  right: -10rpx;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 4rpx;
+}
+
+/* 卡片区域 */
+.address-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.card-item {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.02);
+  transition: all 0.2s;
+}
+
+.card-item:active {
+  transform: scale(0.98);
+  background-color: #fafafa;
+}
+
+.icon-box {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24rpx;
+}
+
+.bg-orange-light {
+  background-color: #FFF3E8; /* 浅橙色背景 */
+}
+
+.text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 8rpx;
+}
+
+.value {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.val-set {
+  color: #111111; /* 已设置地址显示黑色 */
+}
+
+.val-unset {
+  color: #B3B3B3; /* 未设置地址显示浅灰 */
+}
+
+/* 底部按钮 */
+.bottom-section {
+  position: absolute;
+  bottom: 100rpx;
+  left: 40rpx;
+  right: 40rpx;
+}
+
+.primary-btn {
+  background-color: #FF8C00;
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: bold;
+  height: 100rpx;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8rpx 24rpx rgba(255, 140, 0, 0.3);
+}
+
+.primary-btn:active {
+  background-color: #E67E00;
+}

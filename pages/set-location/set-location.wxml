@@ -1,0 +1,45 @@
+<view class="page-container">
+  <view style="height: {{statusBarHeight}}px;"></view>
+
+  <view class="header-section">
+    <text class="main-title">设置：完善通勤路线</text>
+    <text class="sub-title">我们将用于推荐与您一同拼车上下班的邻居，且未经您同意不会用于其他用途。</text>
+  </view>
+
+  <view class="illustration-section">
+    <view class="icon-circle">
+      <van-icon name="location" color="#FF8C00" size="48px" />
+      <view class="car-badge">
+        <van-icon name="logistics" color="#FF8C00" size="14px" />
+      </view>
+    </view>
+  </view>
+
+  <view class="address-cards">
+    <view class="card-item" bindtap="goToSelectHome">
+      <view class="icon-box bg-orange-light">
+        <van-icon name="wap-home" color="#FF8C00" size="22px" />
+      </view>
+      <view class="text-content">
+        <text class="label">我的家</text>
+        <text class="value {{homeAddress ? 'val-set' : 'val-unset'}}">{{homeAddress || '输入您的小区地址'}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+
+    <view class="card-item" bindtap="goToSelectCompany">
+      <view class="icon-box bg-orange-light">
+        <van-icon name="hotel-o" color="#FF8C00" size="22px" />
+      </view>
+      <view class="text-content">
+        <text class="label">我的公司</text>
+        <text class="value {{companyAddress ? 'val-set' : 'val-unset'}}">{{companyAddress || '输入您的公司地址'}}</text>
+      </view>
+      <van-icon name="arrow" color="#ccc" size="16px" />
+    </view>
+  </view>
+
+  <view class="bottom-section">
+    <view class="primary-btn" bindtap="enterHome">进入首页</view>
+  </view>
+</view>

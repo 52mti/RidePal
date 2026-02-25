@@ -325,9 +325,10 @@ page {
   font-size: 30rpx;
   color: #333;
 }
-.time-active {
+.time-option-active {
   color: #FF8C00;
   font-weight: bold;
+  background-color: #FFF3E8; /* 选中的浅橙色底 */
 }
 
 /* 位置选择卡片 */
