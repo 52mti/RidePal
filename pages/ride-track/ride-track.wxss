@@ -1,0 +1,229 @@
+page {
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: #ffffff;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.map-container {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.full-map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* ================= 顶部悬浮卡片 ================= */
+.float-top-card {
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  right: 30rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.eta-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.eta-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.eta-time-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.eta-time {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #FF8C00; /* 橙色高亮 */
+  margin-right: 12rpx;
+}
+
+.eta-desc {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.action-icons {
+  display: flex;
+  gap: 24rpx;
+}
+
+.solid-icon-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 140, 0, 0.2);
+}
+.bg-orange {
+  background-color: #FF8C00;
+}
+
+
+/* ================= 底部悬浮面板 ================= */
+.float-bottom-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 40rpx 40rpx 0 0;
+  padding: 24rpx 30rpx calc(50rpx + env(safe-area-inset-bottom));
+  z-index: 10;
+  box-shadow: 0 -8rpx 24rpx rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+/* 顶部拖动指示条 */
+.drag-handle {
+  width: 80rpx;
+  height: 8rpx;
+  background-color: #E5E5E5;
+  border-radius: 4rpx;
+  margin: 0 auto 30rpx auto;
+}
+
+.car-detail-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.car-icon-box {
+  width: 96rpx;
+  height: 96rpx;
+  background-color: #F4F5F7;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.car-text-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.plate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6rpx;
+}
+
+.plate-number {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #111;
+}
+
+.seat-tag {
+  font-size: 22rpx;
+  color: #666;
+  background-color: #F4F5F7;
+  padding: 6rpx 16rpx;
+  border-radius: 30rpx;
+}
+
+.car-desc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.car-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.seat-desc {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.car-stats {
+  font-size: 22rpx;
+  color: #A3A3A3;
+}
+
+.divider {
+  width: 100%;
+  height: 1rpx;
+  background-color: #F0F0F0;
+  margin-bottom: 30rpx;
+}
+
+/* 路线追踪信息 */
+.tracking-route-box {
+  padding: 0 10rpx;
+}
+
+.track-row {
+  display: flex;
+  align-items: flex-start;
+}
+.mt-20 {
+  margin-top: 36rpx;
+}
+
+.track-icon {
+  margin-top: 6rpx;
+  margin-right: 20rpx;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.track-val {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.arrow-right {
+  color: #ccc;
+  margin: 0 8rpx;
+  font-weight: normal;
+}

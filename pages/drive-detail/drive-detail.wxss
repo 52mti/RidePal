@@ -1,0 +1,331 @@
+page {
+  background-color: #F6F7F9;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+}
+.container {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 180rpx;
+}
+
+/* 通知栏：橙色系 */
+.notice-bar {
+  display: flex;
+  background-color: #FFF3E8; /* 浅橙色背景 */
+  padding: 30rpx;
+  margin: 30rpx;
+  border-radius: 16rpx;
+  align-items: flex-start;
+}
+.notice-content {
+  margin-left: 20rpx;
+  flex: 1;
+}
+.notice-title {
+  font-size: 30rpx;
+  color: #FF8C00; /* 主题橙 */
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+.notice-desc {
+  font-size: 24rpx;
+  color: #FF8C00;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* 概览卡片 */
+.overview-card {
+  background-color: #fff;
+  margin: 0 30rpx 30rpx;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.02);
+}
+.overview-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.overview-header .time {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #999;
+  margin-right: 20rpx;
+}
+.dynamic-tag {
+  background-color: #F0F5FF !important;
+}
+.status-text {
+  flex: 1;
+  text-align: right;
+  font-size: 30rpx;
+  color: #FF8C00;
+  font-weight: bold;
+}
+
+/* 概览路线 */
+.overview-route {
+  margin-bottom: 30rpx;
+}
+.overview-route .route-item {
+  display: flex;
+  align-items: flex-start;
+}
+.circle {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-top: 12rpx;
+  margin-right: 20rpx;
+  border: 6rpx solid; /* 加粗边框还原设计稿 */
+}
+.circle-orange {
+  border-color: #FF8C00;
+}
+.circle-red {
+  border-color: #EE0A24;
+}
+.route-info {
+  display: flex;
+  flex-direction: column;
+}
+.location-main {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 6rpx;
+}
+.location-sub {
+  font-size: 24rpx;
+  color: #999;
+}
+.route-line-solid {
+  width: 2rpx;
+  height: 40rpx;
+  background-color: #EEEEEE;
+  margin-left: 13rpx; /* 微调以对齐加粗的圆环 */
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.car-info-row {
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid #F4F5F7;
+  padding-top: 30rpx;
+}
+.car-text {
+  font-size: 26rpx;
+  color: #666;
+  margin-left: 12rpx;
+  flex: 1;
+}
+.seats-text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #111;
+}
+
+/* 乘客列表 */
+.passenger-section {
+  padding: 0 30rpx;
+}
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+.passenger-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.02);
+}
+.pax-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.pax-name-box {
+  display: flex;
+  align-items: baseline;
+}
+.pax-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #111;
+  margin-right: 12rpx;
+}
+.pax-count {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 12rpx;
+}
+.pax-phone {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 按钮区调整为微圆角矩形 */
+.action-icons {
+  display: flex;
+  gap: 16rpx;
+}
+.icon-btn {
+  width: 64rpx;
+  height: 56rpx;
+  border-radius: 12rpx; /* 微圆角矩形 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-btn {
+  color: #FF8C00;
+  background-color: #FFF3E8; /* 浅橙色 */
+}
+.chat-btn {
+  color: #fff;
+  background-color: #FF8C00; /* 实心橙色 */
+}
+
+/* 乘客路线 */
+.pax-route {
+  padding: 10rpx 0 30rpx 0;
+  margin-bottom: 30rpx;
+}
+.pax-route-item {
+  display: flex;
+  align-items: flex-start;
+}
+.small-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  margin-top: 14rpx;
+  margin-right: 16rpx;
+}
+.bg-orange { background-color: #FF8C00; }
+.bg-red { background-color: #EE0A24; }
+
+.pax-loc-box {
+  display: flex;
+  flex-direction: column;
+}
+.loc-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 6rpx;
+}
+.loc-val {
+  font-size: 30rpx;
+  color: #333;
+}
+.pax-route-line {
+  width: 2rpx;
+  height: 24rpx;
+  border-left: 2rpx dashed #ccc;
+  margin-left: 5rpx;
+  margin-top: 6rpx;
+  margin-bottom: 6rpx;
+}
+
+/* ========= 滑动确认（确认后隐藏滑块） ========= */
+.slide-confirm-box {
+  width: 100%;
+  height: 88rpx;
+}
+
+.slide-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #FFF3E8; /* 淡橙色 */
+  border-radius: 16rpx 0 0 16rpx; /* 左侧圆角贴合边框 */
+  z-index: 0; /* 放在底层，不遮挡文字和滑块 */
+}
+
+.slide-area {
+  width: 100%;
+  height: 100%;
+  background-color: #F8F9FA;
+  border-radius: 16rpx;
+  position: relative;
+  overflow: hidden;
+  border: 1rpx solid #F0F0F0;
+  transition: all 0.3s ease; /* 添加平滑过渡动画 */
+}
+
+/* 确认后的外层容器：变成全橙色 */
+.slide-area.area-success {
+  background-color: #FF8C00;
+  border-color: #FF8C00;
+}
+
+/* 确保之前的背景文字在进度条之上 */
+.slide-bg-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 26rpx;
+  color: #999;
+  z-index: 1; /* 确保 z-index 大于进度条的 0 */
+  transition: color 0.3s ease;
+  pointer-events: none; /* 让文字不阻挡点击和滑动事件 */
+}
+
+/* 确认后的文字：变成白色并加粗 */
+.slide-bg-text.text-success {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.slide-btn {
+  width: 76rpx;
+  height: 76rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 6rpx;
+  left: 6rpx;
+  z-index: 2;
+}
+
+/* 底部操作区 */
+.bottom-placeholder {
+  height: 60rpx;
+}
+.fixed-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.03);
+  z-index: 100;
+  box-sizing: border-box;
+}
+.confirm-depart-btn {
+  border-radius: 16rpx !important;
+  font-size: 34rpx !important;
+  font-weight: bold !important;
+  height: 96rpx !important;
+}
+.depart-tip {
+  text-align: center;
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 20rpx;
+}

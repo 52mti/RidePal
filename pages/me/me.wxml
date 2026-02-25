@@ -2,7 +2,7 @@
   <custom-nav title="我的" bg-color="#F6F7F9" />
 
   <view class="user-card">
-    <image class="avatar" src="/static/avatar-boy.png" mode="aspectFill"></image>
+    <image class="avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" mode="aspectFill"></image>
     <view class="info-box">
       <view class="name">昵称 / 备注名</view>
       <view class="account">账号: 13888888888</view>
@@ -14,10 +14,10 @@
     <van-cell title="个人信息" is-link custom-class="menu-cell">
       <van-icon slot="icon" name="user-o" color="#3b73ea" size="20px" custom-class="cell-icon" />
     </van-cell>
-    <van-cell title="行程信息" is-link custom-class="menu-cell">
+    <van-cell title="行程信息" is-link url="/pages/trip-list/trip-list" custom-class="menu-cell">
       <van-icon slot="icon" name="logistics" color="#ff8917" size="20px" custom-class="cell-icon" />
     </van-cell>
-    <van-cell title="车辆信息" is-link custom-class="menu-cell">
+    <van-cell title="车辆信息" is-link url="/pages/car-detail/car-detail" custom-class="menu-cell">
       <van-icon slot="icon" name="guide-o" color="#07c160" size="20px" custom-class="cell-icon" />
     </van-cell>
     <van-cell title="位置信息" is-link border="{{ false }}" custom-class="menu-cell">

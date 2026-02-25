@@ -12,8 +12,9 @@
     "pages/trip-list/trip-list",
     "pages/trip-detail/trip-detail",
     "pages/drive-detail/drive-detail",
-    "pages/ride-detail/ride-detail",
-    "pages/publish-ride/publish-ride"
+    "pages/publish-ride/publish-ride",
+    "pages/car-detail/car-detail",
+    "pages/ride-track/ride-track"
   ],
   "window": {
     "navigationStyle": "custom"

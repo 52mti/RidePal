@@ -1,0 +1,76 @@
+<view class="page-container">
+  <custom-nav title="乘客实时追踪" showBack="true" bg-color="#ffffff" text-color="#000000" />
+
+  <view class="map-container">
+    
+    <map 
+      class="full-map" 
+      longitude="{{mapInfo.longitude}}" 
+      latitude="{{mapInfo.latitude}}" 
+      scale="14" 
+      markers="{{mapInfo.markers}}"
+      show-location>
+    </map>
+
+    <view class="float-top-card">
+      <view class="eta-box">
+        <text class="eta-label">预计发车时间</text>
+        <view class="eta-time-row">
+          <text class="eta-time">07:30</text>
+          <text class="eta-desc">(20分钟后)</text>
+        </view>
+      </view>
+      <view class="action-icons">
+        <view class="solid-icon-btn bg-orange" bindtap="handleChat">
+          <van-icon name="chat" color="#fff" size="20px"/>
+        </view>
+        <view class="solid-icon-btn bg-orange" bindtap="handleCall">
+          <van-icon name="phone" color="#fff" size="20px"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="float-bottom-panel">
+      <view class="drag-handle"></view>
+
+      <view class="car-detail-row">
+        <view class="car-icon-box">
+          <van-icon name="logistics" size="28px" color="#666" />
+        </view>
+        <view class="car-text-box">
+          <view class="plate-row">
+            <text class="plate-number">豫 A·3i3ii3</text>
+            <view class="seat-tag">拼车 4/5</view>
+          </view>
+          <view class="car-desc-row">
+            <text class="car-desc">丰田 凯美瑞 · 白色</text>
+            <text class="seat-desc">已拼4人，余1位</text>
+          </view>
+          <text class="car-stats">拼车成功 495次 | 违约 0次</text>
+        </view>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="tracking-route-box">
+        <view class="track-row">
+          <van-icon name="location" color="#999" size="16px" class="track-icon" />
+          <view class="track-info">
+            <text class="track-label">当前位置</text>
+            <text class="track-val">朝阳区广安门外大街 88 号</text>
+          </view>
+        </view>
+        
+        <view class="track-row mt-20">
+          <van-icon name="guide-o" color="#FF8C00" size="16px" class="track-icon" />
+          <view class="track-info">
+            <text class="track-label">您的行程</text>
+            <text class="track-val">西红门医院 <text class="arrow-right">→</text> 德胜门</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+</view>

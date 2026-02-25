@@ -1,0 +1,51 @@
+<view class="container">
+  <custom-nav title="车辆信息" showBack="true" bg-color="#ffffff" text-color="#000000" />
+
+  <view class="car-list">
+    <view class="car-card" wx:for="{{carList}}" wx:key="id">
+      
+      <view class="card-header">
+        <view class="title-group">
+          <text class="car-name">{{item.brand}} {{item.model}}</text>
+          <view class="color-tag">{{item.color}}</view>
+        </view>
+        <view class="status-tag {{item.statusCode === 'approved' ? 'status-approved' : 'status-pending'}}">
+          {{item.statusText}}
+        </view>
+      </view>
+
+      <view class="plate-number">{{item.plate}}</view>
+
+      <view class="seat-info">
+        <van-icon name="logistics" color="#999" size="14px" />
+        <text class="seat-text">{{item.seats}}座</text>
+      </view>
+
+      <view class="card-actions">
+        <view class="action-btn" bindtap="handleEdit" data-id="{{item.id}}">
+          <van-icon name="edit" size="16px" color="#666" />
+          <text class="btn-text">编辑</text>
+        </view>
+        <view class="action-btn delete-btn" bindtap="handleDelete" data-id="{{item.id}}">
+          <van-icon name="delete" size="16px" color="#ee0a24" />
+          <text class="btn-text">删除</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <van-button 
+      type="primary" 
+      block 
+      color="#FF8C00" 
+      custom-class="add-btn" 
+      bind:click="handleAddCar"
+    >
+      <van-icon name="plus" size="18px" custom-style="margin-right: 8rpx;" />
+      添加车辆
+    </van-button>
+  </view>
+
+</view>

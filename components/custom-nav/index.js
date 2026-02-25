@@ -27,15 +27,17 @@ Component({
 
   lifetimes: {
     attached() {
-      const sysInfo = wx.getSystemInfoSync()
+      // 【核心修改】：替换为最新的获取窗口信息 API
+      const windowInfo = wx.getWindowInfo()
       const menuBtn = wx.getMenuButtonBoundingClientRect()
 
-      const statusBarHeight = sysInfo.statusBarHeight
+      const statusBarHeight = windowInfo.statusBarHeight
+      
       // 导航内容高度：让内容区相对胶囊垂直居中
-      const navContentHeight =
-        (menuBtn.top - statusBarHeight) * 2 + menuBtn.height
-      // 左侧 padding = 胶囊右侧到屏幕边缘的距离（对称）
-      const capsuleMarginRight = sysInfo.screenWidth - menuBtn.right
+      const navContentHeight = (menuBtn.top - statusBarHeight) * 2 + menuBtn.height
+      
+      // 左侧 padding = 胶囊右侧到屏幕边缘的距离（对称布局）
+      const capsuleMarginRight = windowInfo.screenWidth - menuBtn.right
 
       this.setData({
         statusBarHeight,

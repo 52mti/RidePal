@@ -1,0 +1,122 @@
+<view class="container page-drive-detail">
+  <custom-nav title="行程进行中" showBack="true" bg-color="#ffffff" text-color="#000000" />
+
+  <view class="notice-bar">
+    <van-icon name="info" color="#FF8C00" size="20px" />
+    <view class="notice-content">
+      <view class="notice-title">行程即将开始</view>
+      <view class="notice-desc">距离出发还有 20 分钟，请确认为乘客预留座位并准备切换至实时订单状态。</view>
+    </view>
+  </view>
+
+  <view class="overview-card">
+    <view class="overview-header">
+      <text class="time">今天 07:00</text>
+      <van-tag type="primary" plain round color="#3b73ea" custom-class="dynamic-tag">拼车动态</van-tag>
+      <text class="status-text">待出发</text>
+    </view>
+
+    <view class="overview-route">
+      <view class="route-item">
+        <view class="circle circle-orange"></view>
+        <view class="route-info">
+          <text class="location-main">理想城八期西门</text>
+          <text class="location-sub">起点站</text>
+        </view>
+      </view>
+      <view class="route-line-solid"></view>
+      <view class="route-item">
+        <view class="circle circle-red"></view>
+        <view class="route-info">
+          <text class="location-main">德胜门</text>
+          <text class="location-sub">终点站</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="car-info-row">
+      <van-icon name="logistics" color="#999" size="16px" />
+      <text class="car-text">豫 A 3i3ii3 · 白色 丰田 凯美瑞</text>
+      <text class="seats-text">4/5 座</text>
+    </view>
+  </view>
+
+  <view class="passenger-section">
+    <view class="section-title">乘客列表</view>
+    
+    <view class="passenger-card" wx:for="{{passengerList}}" wx:key="id">
+      <view class="pax-header">
+        <view class="pax-name-box">
+          <text class="pax-name">{{item.name}}</text>
+          <text class="pax-count">({{item.paxCount}}人)</text>
+          <text class="pax-phone">{{item.phone}}</text>
+        </view>
+        <view class="action-icons">
+          <view class="icon-btn phone-btn" bindtap="handleCall">
+            <van-icon name="phone" size="18px"/>
+          </view>
+          <view class="icon-btn chat-btn" bindtap="handleChat">
+            <van-icon name="chat" size="18px"/>
+          </view>
+        </view>
+      </view>
+      
+      <view class="pax-route">
+        <view class="pax-route-item">
+          <view class="small-dot bg-orange"></view>
+          <view class="pax-loc-box">
+            <text class="loc-label">上车点</text>
+            <text class="loc-val">{{item.start}}</text>
+          </view>
+        </view>
+        <view class="pax-route-line"></view>
+        <view class="pax-route-item">
+          <view class="small-dot bg-red"></view>
+          <view class="pax-loc-box">
+            <text class="loc-label">下车点</text>
+            <text class="loc-val">{{item.end}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="slide-confirm-box">
+        <movable-area class="slide-area {{item.isBoarded ? 'area-success' : ''}}">
+          
+          <view 
+            class="slide-fill" 
+            wx:if="{{!item.isBoarded}}" 
+            style="width: calc({{item.slideWidth || 0}}px + 88rpx);">
+          </view>
+
+          <view class="slide-bg-text {{item.isBoarded ? 'text-success' : ''}}">
+            {{item.isBoarded ? '已确认上车' : '滑动确认上车'}}
+          </view>
+          
+          <movable-view 
+            wx:if="{{!item.isBoarded}}"
+            class="slide-btn" 
+            direction="horizontal" 
+            x="{{item.slideX}}" 
+            data-index="{{index}}"
+            bindchange="onSlideChange" 
+            bindtouchend="onSlideEnd">
+            <van-icon name="arrow" color="#FF8C00" size="20px" />
+          </movable-view>
+
+        </movable-area>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-placeholder"></view>
+  
+  <view class="fixed-bottom-bar">
+    <van-button 
+      type="primary" 
+      block 
+      color="#FF8C00" 
+      custom-class="confirm-depart-btn" 
+      bind:click="handleDepart">确认发车</van-button>
+    <view class="depart-tip">所有乘客确认上车后点击发车开始计算行程</view>
+  </view>
+</view>
