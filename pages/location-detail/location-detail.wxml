@@ -1,0 +1,94 @@
+<view class="page-container">
+  <custom-nav title="位置信息" showBack="true" bg-color="#ffffff" text-color="#000000" />
+
+  <scroll-view scroll-y class="scroll-content" show-scrollbar="{{false}}">
+    
+    <view class="location-card">
+      <view class="card-header">
+        <view class="icon-box bg-orange-light">
+          <van-icon name="wap-home" color="var(--theme-main)" size="24px" />
+        </view>
+        <view class="info-box">
+          <text class="title">我的家</text>
+          <text class="address">{{homeData.address.title || '未设置'}}</text>
+        </view>
+        <view class="edit-btn" bindtap="goToSelect" data-type="home">
+          <van-icon name="edit" color="#B3B3B3" size="20px" />
+        </view>
+      </view>
+
+      <view class="waypoint-section">
+        <view class="waypoint-header">
+          <text class="waypoint-title">附近途经点</text>
+          <view class="add-btn" bindtap="goToSelect" data-type="home-waypoint">
+            <van-icon name="plus" size="14px" />
+            <text>添加</text>
+          </view>
+        </view>
+        <view class="waypoint-list">
+          <view class="waypoint-item" wx:for="{{homeData.waypoints}}" wx:key="index">
+            <text class="waypoint-name">{{item.title}}</text>
+            <view class="delete-icon" bindtap="confirmDelete" data-target="home-waypoint" data-index="{{index}}">
+              <van-icon name="cross" color="#cccccc" size="16px" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="location-card">
+      <view class="card-header">
+        <view class="icon-box bg-blue-light">
+          <van-icon name="bag" color="#4A90E2" size="22px" />
+        </view>
+        <view class="info-box">
+          <text class="title">我的公司</text>
+          <text class="address">{{companyData.address.title || '未设置'}}</text>
+        </view>
+        <view class="edit-btn" bindtap="goToSelect" data-type="company">
+          <van-icon name="edit" color="#B3B3B3" size="20px" />
+        </view>
+      </view>
+
+      <view class="waypoint-section">
+        <view class="waypoint-header">
+          <text class="waypoint-title">附近途经点</text>
+          <view class="add-btn" bindtap="goToSelect" data-type="company-waypoint">
+            <van-icon name="plus" size="14px" />
+            <text>添加</text>
+          </view>
+        </view>
+        <view class="waypoint-list">
+          <view class="waypoint-item" wx:for="{{companyData.waypoints}}" wx:key="index">
+            <text class="waypoint-name">{{item.title}}</text>
+            <view class="delete-icon" bindtap="confirmDelete" data-target="company-waypoint" data-index="{{index}}">
+              <van-icon name="cross" color="#cccccc" size="16px" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="other-section">
+      <view class="section-title">其他常用</view>
+      <view class="other-list">
+        <view class="other-item" wx:for="{{otherLocations}}" wx:key="id">
+          <van-icon name="location" color="#B3B3B3" size="20px" class="other-icon" />
+          <text class="other-address">{{item.title}}</text>
+          <view class="delete-icon" bindtap="confirmDelete" data-target="other-location" data-index="{{index}}">
+            <van-icon name="delete" color="#B3B3B3" size="18px" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom-spacer"></view>
+
+  </scroll-view>
+
+  <view class="fixed-bottom-bar">
+    <button class="btn-add-common" bindtap="goToSelect" data-type="other-location">
+      添加常用位置
+    </button>
+  </view>
+</view>

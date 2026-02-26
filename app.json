@@ -15,15 +15,18 @@
     "pages/publish-ride/publish-ride",
     "pages/car-detail/car-detail",
     "pages/ride-track/ride-track",
-    "pages/set-location/set-location"
+    "pages/set-location/set-location",
+    "pages/location-detail/location-detail"
   ],
   "window": {
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "custom": true,
     "color": "#999999",
-    "selectedColor": "#07c160",
+    "selectedColor": "#FF8C00",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "black",
     "list": [

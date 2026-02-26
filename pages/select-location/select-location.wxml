@@ -1,55 +1,56 @@
 <view class="container">
-  <custom-nav title="选择位置" show-back bg-color="#F6F7F9" />
+  <custom-nav title="选择地点" showBack="true" bg-color="#ffffff" text-color="#000000" />
 
-  <van-search
-    value="{{ searchValue }}"
-    placeholder="请输入地址（检索框）"
-    use-action-slot
-    bind:change="onSearchChange"
-    bind:search="onSearch"
-  >
-    <view class="btn-search" slot="action" bind:tap="onSearch">搜索</view>
-  </van-search>
-
-  <view class="suggestion-list" wx:if="{{ suggestion.length > 0 && searchValue }}">
-    <view 
-      class="suggestion-item" 
-      wx:for="{{ suggestion }}" 
-      wx:key="id" 
-      bindtap="selectSuggestion" 
-      data-item="{{ item }}"
-    >
-      <view class="title">{{ item.title }}</view>
-      <view class="address">{{ item.address }}</view>
+  <view class="search-header">
+    <view class="city-selector" bindtap="onSelectCity">
+      <text>{{currentCity}}</text>
+      <van-icon name="arrow-down" size="12px" color="#FF8C00" />
     </view>
+    <view class="search-box">
+      <van-icon name="search" size="16px" color="#B3B3B3" />
+      <input 
+        class="search-input" 
+        placeholder="您想去哪里？" 
+        placeholder-class="input-placeholder"
+        value="{{keyword}}" 
+        bindinput="onInput" 
+        focus="{{true}}" 
+      />
+    </view>
+    <view class="cancel-btn" bindtap="onCancel">取消</view>
   </view>
 
-  <van-cell-group title="选定途径点/起终点">
-    <scroll-view scroll-y="true" style="height: 20vh;">
-      <block wx:for="{{ selectedPoints }}" wx:key="index">
-        <van-cell 
-          title="{{ item.title }}" 
-          label="{{ item.address }}"
-          border="{{ true }}"
-        >
-          <van-icon slot="icon" name="location-o" class="location-icon" />
-          <van-icon name="cross" catchtap="removePoint" data-index="{{ index }}" />
-        </van-cell>
-      </block>
-      <van-cell wx:if="{{ selectedPoints.length === 0 }}" title="请在地图上点击选择位置" title-style="color: #999;" />
-    </scroll-view>
-  </van-cell-group>
+  <scroll-view scroll-y class="scroll-content" show-scrollbar="{{false}}">
+    
+    <view class="section-header" wx:if="{{!keyword && list.length > 0}}">
+      <text class="section-title">历史记录</text>
+      <view class="clear-btn" bindtap="clearHistory">
+        <van-icon name="delete" size="14px" color="#B3B3B3" />
+        <text>清除历史</text>
+      </view>
+    </view>
 
+    <view class="location-list">
+      <view class="location-item" wx:for="{{list}}" wx:key="id" bindtap="onSelectLocation" data-item="{{item}}">
+        <view class="item-icon-box">
+          <van-icon name="{{ keyword ? 'location-o' : 'clock-o' }}" color="#FF8C00" size="20px" />
+        </view>
+        
+        <view class="item-info">
+          <text class="item-name">{{item.title}}</text>
+          <text class="item-address">{{item.address}}</text>
+        </view>
+        
+        <view class="item-arrow">
+          <van-icon name="arrow" color="#FF8C00" size="16px" custom-class="up-right-arrow" />
+        </view>
+      </view>
+    </view>
 
-  <view class="map-container">
-    <map
-      id="myMap"
-      class="main-map"
-      latitude="{{ latitude }}"
-      longitude="{{ longitude }}"
-      markers="{{ markers }}"
-      bindtap="onMapTap"
-      show-location
-    ></map>
-  </view>
+    <view class="empty-state" wx:if="{{list.length === 0}}">
+      <van-icon name="location" size="48px" color="#E5E5E5" />
+      <text class="empty-text">{{keyword ? '未找到相关地点' : '没有更多历史了'}}</text>
+    </view>
+
+  </scroll-view>
 </view>

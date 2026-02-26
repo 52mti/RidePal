@@ -42,7 +42,7 @@
           <view wx:else class="dynamic-info">
             <text class="dynamic-detail">车牌：{{item.plateNumber}} {{item.carColor}} {{item.carModel}}</text>
             <view class="dynamic-time-row">
-              <van-icon name="clock-o" size="14px" color="#07c160" />
+              <van-icon name="clock-o" size="14px" color="#FF8C00" />
               <text class="dynamic-depart">{{item.departTime}} 开车</text>
             </view>
           </view>

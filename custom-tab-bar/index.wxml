@@ -3,7 +3,7 @@
     active="{{ active }}" 
     bind:change="onChange" 
     z-index="999"
-    active-color="#07c160"
+    active-color="#FF8C00"
     inactive-color="#999999"
   >
     <van-tabbar-item icon="chat-o">信息</van-tabbar-item>

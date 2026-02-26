@@ -31,7 +31,7 @@ Page({
         price: '30',
         status: 'normal',
         statusText: '差3人',
-        statusClass: 'tag-green' // 绿色标签
+        statusClass: 'tag-orange' // 绿色标签
       },
       {
         id: 3,

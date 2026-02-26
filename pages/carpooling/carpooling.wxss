@@ -37,7 +37,7 @@ page {
 
 .tab-item.active {
   background-color: #fff;
-  color: #07c160;
+  color: var(--theme-main);
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
@@ -125,7 +125,7 @@ page {
   font-weight: 800;
   font-family: DIN, sans-serif; /* 如果有数字字体体验更好 */
 }
-.time-active { color: #07c160; }
+.time-active { color: var(--theme-main); }
 .time-disabled { color: #999; }
 
 /* 卡片路线部分 */
@@ -161,7 +161,7 @@ page {
   border-radius: 4px;
   flex-shrink: 0;
 }
-.icon-up { background-color: #07c160; }
+.icon-up { background-color: var(--theme-main); }
 .icon-down { background-color: #ee0a24; }
 
 .address-text {
@@ -212,12 +212,12 @@ page {
   bottom: calc(100px + env(safe-area-inset-bottom));
   width: 56px;
   height: 56px;
-  background-color: #07c160;
+  background-color: var(--theme-main);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(7, 193, 96, 0.4);
+  box-shadow: 0 4px 12px var(--btn-shadow);
   z-index: 99;
 }
 

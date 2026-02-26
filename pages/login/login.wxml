@@ -1,10 +1,13 @@
 <view class="page">
-  <custom-nav show-back bg-color="transparent" text-color="#fff" />
+  <custom-nav show-back bg-color="transparent" text-color="#000000" />
 
   <!-- 顶部绿色区域 -->
   <view class="hero">
-    <view class="logo-circle">
-      <image class="logo-img" src="/images/logo.png" mode="aspectFit" />
+    <view class="logo-container">
+      <view class="logo-bg">
+        <view class="figure"></view>
+        <view class="figure"></view>
+      </view>
     </view>
     <text class="app-name">拼车一族</text>
     <text class="app-slogan">和邻居一起拼车上下班</text>

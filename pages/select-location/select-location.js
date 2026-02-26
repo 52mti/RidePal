@@ -1,167 +1,207 @@
-// 引入腾讯地图SDK (请根据实际路径修改)
+// 引入腾讯地图 SDK 核心类（假设您放在了 libs 目录下）
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js')
+const config = require('../../config.js')
 let qqmapsdk
 
-let searchTimer
 Page({
   data: {
-    searchValue: '',
-    searchInputFocus: false,
-    suggestion: [], // 存放联想结果
-    latitude: 39.908823, // 默认北京
-    longitude: 116.39747,
-    selectedPoints: [], // 已选中的位置列表
-    markers: [], // 地图标记
+    currentCity: '定位中...',
+    keyword: '',
+
+    // locationType
+    locationType: '',
+
+    // list 为当前正在渲染的数组
+    list: [],
+    // 缓存区
+    historyList: [],
+    searchList: [],
   },
 
-  onLoad() {
-    // 实例化API核心类
-    qqmapsdk = new QQMapWX({
-      key: 'I73BZ-3MTLU-KS7VI-BZMVI-7NSX6-KJB5J', // 必填
-    })
-    this.initLocation()
-  },
-
-  // 初始化当前位置
-  initLocation() {
-    wx.getLocation({
-      type: 'gcj02',
-      success: (res) => {
-        this.setData({
-          latitude: res.latitude,
-          longitude: res.longitude,
-        })
-      },
-    })
-  },
-
-  // 点击地图选择位置
-  onMapTap(e) {
-    const { latitude, longitude } = e.detail
-
-    // 逆地址解析：根据坐标获取具体名称
-    qqmapsdk.reverseGeocoder({
-      location: { latitude, longitude },
-      success: (res) => {
-        const point = {
-          title: res.result.formatted_addresses.recommend || '未知位置',
-          address: res.result.address,
-          latitude,
-          longitude,
-        }
-        this.addPointToList(point)
-      },
-    })
-  },
-
-  // 添加到列表并更新Marker
-  addPointToList(point) {
-    const points = this.data.selectedPoints
-    const markers = this.data.markers
-
-    points.push(point)
-    markers.push({
-      id: markers.length,
-      latitude: point.latitude,
-      longitude: point.longitude,
-      title: point.title,
-      iconPath: '/images/map-marker.png', // 需要准备一个图标
-      width: 30,
-      height: 30,
-    })
-
+  onLoad(options) {
     this.setData({
-      selectedPoints: points,
-      markers: markers,
+      locationType: options.type,
     })
+    // 1. 实例化腾讯地图 API 核心类 (替换为您自己申请的 key)
+    qqmapsdk = new QQMapWX({ key: config.mapKey })
 
-    wx.showToast({ title: '添加成功', icon: 'none' })
+    // 2. 加载本地历史记录
+    this.loadHistory()
+
+    // 3. 首次进入，获取当前地理位置
+    this.getUserLocation()
   },
 
-  // 删除选定点
-  removePoint(e) {
-    const index = e.currentTarget.dataset.index
-    let points = this.data.selectedPoints
-    let markers = this.data.markers
-    points.splice(index, 1)
-    markers.splice(index, 1)
-    this.setData({ selectedPoints: points, markers: markers })
+  // === 初始化操作 ===
+
+  // 加载本地历史缓存
+  loadHistory() {
+    const history = wx.getStorageSync('locationHistory') || [
+      // 演示使用：为了直接展示高保真效果，我写死了一些测试数据
+      {
+        id: '1',
+        title: '圆明园-长春园',
+        address: '海淀区清华西路28号圆明园景区内',
+        location: { lat: 40.0, lng: 116.3 },
+      },
+      {
+        id: '2',
+        title: '清华大学-西门',
+        address: '海淀区中关村北大街',
+        location: { lat: 40.0, lng: 116.3 },
+      },
+      {
+        id: '3',
+        title: '中关村软件园',
+        address: '海淀区东北旺西路8号',
+        location: { lat: 40.0, lng: 116.3 },
+      },
+    ]
+    this.setData({
+      historyList: history,
+      list: history,
+    })
   },
 
-  // 搜索框输入处理
-  onSearch(e) {
-    const val = this.data.searchValue
-    if (!val) return
-
-    // 地理位置搜索
-    qqmapsdk.getSuggestion({
-      keyword: val,
+  // 获取用户当前位置 & 解析城市
+  getUserLocation() {
+    // 调起微信原生定位 API
+    wx.getLocation({
+      type: 'gcj02', // 国测局坐标系
       success: (res) => {
-        // 这里可以弹窗让用户选搜索结果，或者取第一个
-        if (res.data.length > 0) {
-          const first = res.data[0]
-          this.setData({
-            latitude: first.location.lat,
-            longitude: first.location.lng,
-          })
-        }
+        // 【真实业务逻辑】：调用腾讯地图 reverseGeocoder 解析城市名称
+        qqmapsdk.reverseGeocoder({
+          location: { latitude: res.latitude, longitude: res.longitude },
+          success: (geoRes) => {
+            this.setData({ currentCity: geoRes.result.address_component.city })
+          },
+        })
+        // 模拟请求成功，设定默认城市
+        this.setData({ currentCity: '北京市' })
+      },
+      fail: () => {
+        // 用户拒绝授权或定位失败时的兜底
+        this.setData({ currentCity: '北京市' })
       },
     })
   },
 
-  onSearchChange(e) {
-    const value = e.detail
-    this.setData({ searchValue: value })
+  // === 输入与搜索逻辑 ===
 
-    // 清除之前的计时器
-    clearTimeout(searchTimer)
+  onInput(e) {
+    const keyword = e.detail.value
+    this.setData({ keyword })
 
-    if (!value.trim()) {
-      this.setData({ suggestion: [] })
+    // 如果清空了输入框，恢复显示历史记录
+    if (!keyword.trim()) {
+      this.setData({ list: this.data.historyList })
       return
     }
 
-    // 设置防抖，300ms 后执行搜索
-    searchTimer = setTimeout(() => {
-      this.getTips(value)
-    }, 300)
+    // 防抖机制：用户停止输入 500ms 后再发起网络请求，节省接口调用量
+    if (this.searchTimer) clearTimeout(this.searchTimer)
+    this.searchTimer = setTimeout(() => {
+      this.searchLocation(keyword)
+    }, 500)
   },
 
-  // 调用腾讯地图接口获取建议
-  getTips(keyword) {
+  // 调用腾讯地图搜索接口
+  searchLocation(keyword) {
+    // 【真实业务逻辑】：调用地点搜索提示 API
     qqmapsdk.getSuggestion({
       keyword: keyword,
-      region: '北京', // 可限制城市，不填则全国搜索
+      region: this.data.currentCity, // 限定在当前选中的城市内搜索
       success: (res) => {
-        this.setData({
-          suggestion: res.data,
-        })
+        this.setData({ list: res.data })
       },
-      fail: (err) => {
-        console.error(err)
+    })
+
+    // 模拟搜索结果返回 (根据关键词动态生成)
+    const mockSearchList = [
+      {
+        id: 's1',
+        title: `${keyword}大厦`,
+        address: '北京市朝阳区某某路1号',
+        location: { lat: 39.9, lng: 116.4 },
+      },
+      {
+        id: 's2',
+        title: `${keyword}购物中心`,
+        address: '北京市海淀区某某路2号',
+        location: { lat: 39.9, lng: 116.4 },
+      },
+    ]
+    this.setData({ list: mockSearchList })
+  },
+
+  // === 交互操作 ===
+
+  // 选中某一个地点
+  onSelectLocation(e) {
+    const item = e.currentTarget.dataset.item
+
+    // 1. 将其保存到历史记录
+    this.saveHistory(item)
+
+    // 2. 设置全局状态并返回上一页
+    const app = getApp()
+    if (this.data.locationType === 'home') {
+      app.globalData.homeData.address = item
+    }
+    if (this.data.locationType === 'home-waypoint') {
+      app.globalData.homeData.waypoints.push(item)
+    }
+    if (this.data.locationType === 'company') {
+      app.globalData.companyData.address = item
+    }
+    if (this.data.locationType === 'company-waypoint') {
+      app.globalData.companyData.waypoints.push(item)
+    }
+    if (this.data.locationType === 'other-location') {
+      app.globalData.otherLocations.push(item)
+    }
+    wx.navigateBack()
+
+    wx.showToast({ title: `选中: ${item.title}`, icon: 'none' })
+  },
+
+  // 写入历史记录并去重
+  saveHistory(item) {
+    let history = wx.getStorageSync('locationHistory') || this.data.historyList
+
+    // 去重：如果选中的地点已经在历史里，先把它删掉，然后再放到最前面
+    history = history.filter((h) => h.title !== item.title)
+    history.unshift(item)
+
+    // 限制最多保存 10 条历史记录
+    if (history.length > 10) history.pop()
+
+    wx.setStorageSync('locationHistory', history)
+    // 这里不再 setData，因为选中后通常会直接 navigateBack 离开当前页面
+  },
+
+  // 清除历史记录
+  clearHistory() {
+    wx.showModal({
+      title: '提示',
+      content: '确定要清除所有历史记录吗？',
+      confirmColor: '#FF8C00',
+      success: (res) => {
+        if (res.confirm) {
+          wx.removeStorageSync('locationHistory')
+          this.setData({ historyList: [], list: [] })
+        }
       },
     })
   },
 
-  // 点击建议列表中的某一项
-  selectSuggestion(e) {
-    const item = e.currentTarget.dataset.item
+  // 取消按钮：返回上一页
+  onCancel() {
+    wx.navigateBack()
+  },
 
-    // 1. 将选中的点添加到你的列表中
-    const point = {
-      title: item.title,
-      address: item.address,
-      latitude: item.location.lat,
-      longitude: item.location.lng,
-    }
-    this.addPointToList(point)
-
-    // 2. 清空建议列表并移动地图中心
-    this.setData({
-      suggestion: [],
-      searchValue: '',
-      latitude: item.location.lat,
-      longitude: item.location.lng,
-    })
+  // 点击左侧城市
+  onSelectCity() {
+    wx.showToast({ title: '选择城市功能待开发', icon: 'none' })
   },
 })

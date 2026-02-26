@@ -1,0 +1,198 @@
+page {  
+  background-color: #F8F9FA;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.scroll-content {
+  flex: 1;
+  padding: 30rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* ================= 卡片通用样式 ================= */
+.location-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+/* 卡片头部 */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.icon-box {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+.bg-orange-light { background-color: #FFF3E8; } /* 浅橙色 */
+.bg-blue-light { background-color: #F0F6FF; } /* 浅蓝色 */
+
+.info-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #111111;
+  margin-bottom: 6rpx;
+}
+
+.address {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.edit-btn {
+  padding: 10rpx;
+}
+
+/* 途经点区域 */
+.waypoint-section {
+  border-top: 1rpx solid #F6F7F9;
+  padding-top: 24rpx;
+}
+
+.waypoint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.waypoint-title {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  color: var(--theme-main);
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.add-btn text {
+  margin-left: 6rpx;
+}
+
+/* 途经点列表 */
+.waypoint-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.waypoint-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1rpx solid #F0F0F0;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  background-color: #ffffff;
+}
+
+.waypoint-name {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.delete-icon {
+  padding: 6rpx;
+}
+
+/* ================= 其他常用区域 ================= */
+.other-section {
+  margin-top: 10rpx;
+}
+
+.section-title {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 20rpx;
+  padding-left: 10rpx;
+}
+
+.other-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+.other-icon {
+  margin-right: 20rpx;
+}
+
+.other-address {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+/* ================= 底部按钮 ================= */
+.bottom-spacer {
+  height: 160rpx; /* 留出底部按钮的空间 */
+}
+
+.fixed-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F8F9FA;
+  padding: 20rpx 40rpx calc(20rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.btn-add-common {
+  width: 100%;
+  height: 96rpx;
+  /* 使用要求的 css 变量 */
+  background-color: var(--theme-main); 
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: bold;
+  border-radius: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  box-shadow: 0 8rpx 24rpx var(--btn-shadow);
+}
+
+.btn-add-common::after {
+  border: none;
+}
+
+.btn-add-common:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}

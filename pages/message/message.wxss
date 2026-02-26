@@ -48,7 +48,7 @@
   width: 96rpx;
   height: 96rpx;
   border-radius: 16rpx;
-  background-color: #07c160;
+  background-color: var(--theme-main);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +106,7 @@
 }
 
 .title-dynamic {
-  color: #07c160;
+  color: var(--theme-main);
   font-weight: 600;
 }
 
@@ -156,7 +156,7 @@
 
 .dynamic-depart {
   font-size: 24rpx;
-  color: #07c160;
+  color: var(--theme-main);
   font-weight: 500;
   margin-left: 6rpx;
 }
@@ -169,7 +169,7 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
-  background-color: #07c160;
+  background-color: var(--theme-main);
   display: flex;
   align-items: center;
   justify-content: center;

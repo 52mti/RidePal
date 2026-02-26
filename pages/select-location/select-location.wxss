@@ -1,60 +1,159 @@
+page {
+  background-color: #F8F9FA;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: #f7f8fa;
-  overflow: hidden;
+  height: 100%;
 }
 
-.location-icon {
-  margin-right: 10px;
-  color: #1989fa;
+/* ================= 搜索栏部分 ================= */
+.search-header {
   display: flex;
   align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: #ffffff;
 }
 
-.map-container {
-  flex: 1; /* 地图占据剩余高度 */
-  width: 100%;
-  margin-top: 10px;
-  min-height: 0;
+.city-selector {
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+}
+.city-selector text {
+  font-size: 28rpx;
+  color: #FF8C00; /* 主题橙 */
+  font-weight: bold;
+  margin-right: 8rpx;
 }
 
-.main-map {
-  width: 100%;
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #F4F5F7; /* 浅灰色搜索框 */
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  height: 72rpx;
+  box-sizing: border-box;
+}
+
+.search-input {
+  flex: 1;
+  margin-left: 16rpx;
+  font-size: 28rpx;
+  color: #333333;
   height: 100%;
-  display: block;
+}
+.input-placeholder {
+  color: #B3B3B3;
 }
 
-.btn-search {
-  padding: 0 20rpx;
+.cancel-btn {
+  font-size: 30rpx;
+  color: #666666;
+  margin-left: 30rpx;
 }
 
-/* 建议列表容器 */
-.suggestion-list {
-  position: absolute;
-  top: 54px; /* 根据搜索框高度调整 */
-  left: 0;
-  right: 0;
-  z-index: 9999; /* 必须高于地图层级 */
-  background: white;
-  max-height: 60vh;
+/* ================= 列表内容部分 ================= */
+.scroll-content {
+  flex: 1;
+  padding: 30rpx;
+  box-sizing: border-box;
   overflow-y: auto;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.suggestion-item {
-  padding: 12px 15px;
-  border-bottom: 1rpx solid #f5f5f5;
+/* 标题行：历史记录 & 清除 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #666666;
+}
+.clear-btn {
+  display: flex;
+  align-items: center;
+  color: #B3B3B3;
+  font-size: 26rpx;
+}
+.clear-btn text {
+  margin-left: 8rpx;
 }
 
-.suggestion-item .title {
-  font-size: 14px;
-  color: #333;
+/* 列表卡片 */
+.location-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.03); /* 极淡的阴影还原设计稿 */
+}
+.location-item:active {
+  background-color: #fafafa;
 }
 
-.suggestion-item .address {
-  font-size: 12px;
-  color: #999;
-  margin-top: 4px;
+/* 图标容器：浅橙色底 */
+.item-icon-box {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background-color: #FFF3E8; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.item-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #111111;
+  margin-bottom: 8rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item-address {
+  font-size: 24rpx;
+  color: #999999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 利用 CSS 旋转让原本向右的箭头变成设计图里的向右上角倾斜 */
+.up-right-arrow {
+  transform: rotate(-45deg);
+  margin-left: 20rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 0;
+}
+.empty-text {
+  font-size: 26rpx;
+  color: #cccccc;
+  margin-top: 20rpx;
 }

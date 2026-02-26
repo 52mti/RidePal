@@ -24,8 +24,8 @@ Page({
     // 读取 app.globalData 中的全局状态
     // 如果你在其他页面修改了 app.globalData.homeAddress，这里会自动更新到视图
     this.setData({
-      homeAddress: app.globalData.homeAddress || '',
-      companyAddress: app.globalData.companyAddress || ''
+      homeAddress: app.globalData.homeData.address?.title || '',
+      companyAddress: app.globalData.companyData.address?.title || ''
     });
   },
 
