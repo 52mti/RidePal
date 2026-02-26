@@ -186,7 +186,6 @@ page {
   border-radius: 10px;
 }
 .tag-orange { color: #ff6a00; background-color: #fff0e5; }
-.tag-green { color: #07c160; background-color: #e6f9ed; }
 .tag-gray { color: #999; background-color: #f2f2f2; }
 
 /* 价格 */

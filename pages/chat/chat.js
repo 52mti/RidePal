@@ -1,3 +1,7 @@
+// 在文件最顶部引入插件和全局管理器
+const plugin = requirePlugin('WechatSI')
+const manager = plugin.getRecordRecognitionManager()
+
 Page({
   data: {
     chatTitle: '聊天对象',
@@ -7,6 +11,9 @@ Page({
     triggered: false,
     isDynamic: false,
     dynamicInfo: {},
+
+    // 新增：控制语音模式的开关状态
+    isVoiceMode: false,
   },
 
   onLoad: function (options) {
@@ -29,6 +36,75 @@ Page({
     }
 
     this.loadMockMessages()
+    // ... (保留你原有的 onLoad 逻辑)
+
+    // 新增：初始化语音识别管理器
+    this.initVoiceRecognition()
+  },
+
+  // ... (保留你原有的 loadMockMessages, onPullDownRefresh, formatTime 等逻辑)
+
+  // ===== 新增：初始化语音识别回调 =====
+  initVoiceRecognition: function () {
+    // 录音开始
+    manager.onStart = (res) => {
+      console.log('语音识别开始')
+      this.setData({ isVoiceMode: true })
+      // 记录开始说话前的输入框内容，方便后面做追加拼写
+      this.originalInputValue = this.data.inputValue || ''
+    }
+
+    // 录音过程中实时返回（流式识别）
+    manager.onRecognize = (res) => {
+      // 将原有的文字和正在识别的文字拼接起来，实时展示在输入框
+      this.setData({
+        inputValue: this.originalInputValue + res.result,
+      })
+    }
+
+    // 录音结束
+    manager.onStop = (res) => {
+      console.log('语音识别结束')
+      this.setData({
+        inputValue: this.originalInputValue + res.result,
+        isVoiceMode: false,
+      })
+    }
+
+    // 录音报错（如超时、没说话等）
+    manager.onError = (res) => {
+      console.error('语音报错', res)
+      this.setData({ isVoiceMode: false })
+      wx.showToast({ title: '未听到声音或超时', icon: 'none' })
+    }
+  },
+
+  // ===== 修改：点击话筒按钮交互 =====
+  onVoiceClick: function () {
+    // 如果当前正在录音，再次点击则停止录音
+    if (this.data.isVoiceMode) {
+      manager.stop()
+      return
+    }
+
+    // 如果未在录音，则请求权限并开始录音
+    wx.authorize({
+      scope: 'scope.record',
+      success: () => {
+        manager.start({
+          lang: 'zh_CN', // 识别普通话
+        })
+      },
+      fail: () => {
+        wx.showModal({
+          title: '提示',
+          content: '需要录音权限才能使用语音转文字功能',
+          success: (res) => {
+            if (res.confirm) wx.openSetting()
+          },
+        })
+      },
+    })
   },
 
   loadMockMessages: function () {
@@ -120,7 +196,12 @@ Page({
     this.setData({ inputValue: e.detail.value })
   },
 
+  // 修改：发送消息逻辑（优化：如果发消息时正在录音，强制停掉）
   sendMessage: function () {
+    if (this.data.isVoiceMode) {
+      manager.stop()
+    }
+
     const text = this.data.inputValue
     if (!text.trim()) return
 
@@ -148,14 +229,6 @@ Page({
 
   goBack: function () {
     wx.navigateBack()
-  },
-
-  showMore: function () {
-    wx.showToast({ title: '更多功能待开发', icon: 'none' })
-  },
-
-  onVoiceClick: function () {
-    wx.showToast({ title: '语音功能待开发', icon: 'none' })
   },
 
   onEmojiClick: function () {

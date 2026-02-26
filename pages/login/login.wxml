@@ -34,7 +34,7 @@
       <van-checkbox
         value="{{agreed}}"
         bind:change="onAgreeChange"
-        checked-color="#07c160"
+        checked-color="var(--theme-main)"
         icon-size="16px"
       />
       <text class="agreement-text">已阅读并同意</text>

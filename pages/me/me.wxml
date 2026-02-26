@@ -11,7 +11,7 @@
   </view>
 
   <van-cell-group inset custom-class="menu-group">
-    <van-cell title="个人信息" is-link custom-class="menu-cell">
+    <van-cell title="个人信息" is-link url="/pages/contact-detail/contact-detail" custom-class="menu-cell">
       <van-icon slot="icon" name="user-o" color="#3b73ea" size="20px" custom-class="cell-icon" />
     </van-cell>
     <van-cell title="行程信息" is-link url="/pages/trip-list/trip-list" custom-class="menu-cell">
@@ -36,10 +36,6 @@
       <van-icon slot="icon" name="service-o" color="#07c160" size="20px" custom-class="cell-icon" />
     </van-cell>
   </van-cell-group>
-
-  <view class="fab-button">
-    <van-icon name="moon-o" size="20px" color="#333" />
-  </view>
 
   <view class="bottom-spacer"></view>
 

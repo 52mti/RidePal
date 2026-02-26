@@ -173,7 +173,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4rpx 20rpx rgba(7, 193, 96, 0.4);
+  box-shadow: var(--btn-shadow-small);
 }
 
 .fab:active {

@@ -1,0 +1,102 @@
+<view class="page-container">
+  <view class="map-section">
+    <map 
+      id="routeMap" 
+      class="route-map" 
+      longitude="{{mapCenter.lng}}" 
+      latitude="{{mapCenter.lat}}" 
+      scale="14" 
+      markers="{{markers}}"
+      show-location
+    ></map>
+
+    <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+      <view class="nav-btn" bindtap="goBack">
+        <van-icon name="arrow-left" size="18px" color="#333" />
+      </view>
+      <view class="nav-btn translate-y">
+        <van-icon name="bell" size="18px" color="#333" />
+        <view class="badge-dot"></view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="content-section" show-scrollbar="{{false}}">
+    
+    <view class="route-tag">查看路线</view>
+
+    <view class="driver-card">
+      <view class="driver-info">
+        <image class="avatar" src="https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0" mode="aspectFill"></image>
+        <view class="driver-text">
+          <view class="name-row">
+            <text class="name">宣东</text>
+            <view class="verify-tag">已认证</view>
+          </view>
+          <text class="stats">拼车成功 495次 | 违约 0次</text>
+        </view>
+      </view>
+      <view class="action-btns">
+        <view class="action-btn" bindtap="callDriver">
+          <van-icon name="phone" size="20px" color="#4A5A6A" />
+        </view>
+        <view class="action-btn" bindtap="goToMessage">
+          <van-icon name="chat" size="20px" color="var(--theme-main)" />
+        </view>
+      </view>
+    </view>
+
+    <view class="trip-card">
+      <view class="trip-header">
+        <text class="time">04:50出发</text>
+        <text class="seats">余座2</text>
+      </view>
+
+      <view class="location-group">
+        <view class="group-icon icon-up">上</view>
+        <view class="tags-container">
+          <view 
+            class="tag-item {{ activeBoardingIndex === index ? 'tag-active' : '' }}" 
+            wx:for="{{boardingPoints}}" 
+            wx:key="name"
+            bindtap="onSelectBoarding"
+            data-index="{{index}}"
+          >
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+
+      <view class="location-group">
+        <view class="group-icon icon-down">下</view>
+        <view class="tags-container">
+          <view 
+            class="tag-item {{ activeAlightingIndex === index ? 'tag-active' : '' }}" 
+            wx:for="{{alightingPoints}}" 
+            wx:key="name"
+            bindtap="onSelectAlighting"
+            data-index="{{index}}"
+          >
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+
+      <view class="remark-box">
+        超快车王 后排2人 空调充足 勿提额外接送要求
+      </view>
+    </view>
+
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+
+  <view class="bottom-bar">
+    <view class="price-box">
+      <text class="symbol">¥</text>
+      <text class="price">20</text>
+      <text class="unit">/位</text>
+    </view>
+    <button class="book-btn" bindtap="onBookSeat">预定座位</button>
+  </view>
+
+</view>

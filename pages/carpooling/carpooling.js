@@ -15,11 +15,12 @@ Page({
         nickname: '王先生',
         time: '12:20',
         startPoint: '理想成八期西门, 地安门',
+        startWaypoints: [],
         endPoint: '天安门广场, 复兴门',
+        endWayPoints: [],
         price: '25',
         status: 'normal',
         statusText: '差1人',
-        statusClass: 'tag-orange' // 橘色标签
       },
       {
         id: 2,
@@ -31,7 +32,6 @@ Page({
         price: '30',
         status: 'normal',
         statusText: '差3人',
-        statusClass: 'tag-orange' // 绿色标签
       },
       {
         id: 3,
@@ -43,7 +43,6 @@ Page({
         price: '20',
         status: 'full', // 控制时间变灰
         statusText: '已满',
-        statusClass: 'tag-gray' // 灰色标签
       }
     ],
 
@@ -166,6 +165,14 @@ Page({
   // 点击时间筛选
   onFilterTime() {
     wx.showToast({ title: '打开时间选择器', icon: 'none' })
+  },
+
+  // 点击卡片预约座位
+  onMakeReservation(e) {
+    const item = e.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: "/pages/makeReservation/makeReservation"
+    })
   },
 
   // 点击悬浮加号发布

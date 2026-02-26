@@ -54,7 +54,13 @@
   </scroll-view>
 
   <view class="input-bar">
-    <van-icon name="microphone" size="28px" color="#7a7f85" bind:click="onVoiceClick" class="icon-mic" />
+    <van-icon 
+      name="service-o" 
+      size="28px" 
+      color="{{isVoiceMode ? 'var(--theme-main)' : '#7a7f85'}}" 
+      bind:click="onVoiceClick" 
+      class="icon-mic {{isVoiceMode ? 'mic-active' : ''}}" 
+    />
     <view class="input-wrap">
       <input
         class="input-field"
@@ -63,6 +69,7 @@
         placeholder="请输入消息..."
         placeholder-class="input-placeholder"
         confirm-type="send"
+        cursor-spacing="20"
         bindconfirm="sendMessage"
       />
     </view>

@@ -8,4 +8,15 @@ page {
   
   /* 按钮阴影：向下偏移更多，颜色略深，强调可点击性 */
   --btn-shadow: 0 16rpx 32rpx rgba(255, 140, 0, 0.4);
+  --btn-shadow-small: 0 4rpx 20rpx rgba(255, 140, 0, 0.4);
+
+  --bubble-shadow: 0 2rpx 8rpx rgba(255, 140, 0, 0.4);
+}
+
+/* 彻底隐藏所有滚动条 */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
 }

@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/login/login",
-		"pages/message/message",
+    "pages/message/message",
     "pages/select-location/select-location",
     "pages/chat/chat",
     "pages/contacts/contacts",
@@ -16,8 +16,24 @@
     "pages/car-detail/car-detail",
     "pages/ride-track/ride-track",
     "pages/set-location/set-location",
-    "pages/location-detail/location-detail"
+    "pages/location-detail/location-detail",
+    "pages/makeReservation/makeReservation"
   ],
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.6",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于在地图上展示您和起终点的距离"
+    },
+    "scope.record": {
+      "desc": "您的语音将用于转换为文字，以便发送消息"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation", "chooseLocation"],
   "window": {
     "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#ffffff",

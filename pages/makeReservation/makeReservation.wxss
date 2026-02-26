@@ -1,0 +1,297 @@
+page {
+  background-color: #F6F7F9;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+/* ================= 地图区域 ================= */
+.map-section {
+  width: 100%;
+  height: 38vh; /* 按照图片比例设置 */
+  position: relative;
+}
+
+.route-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* 顶部悬浮导航 */
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.translate-y {
+  transform: translateY(100rpx);
+}
+
+.nav-btn {
+  width: 70rpx;
+  height: 70rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.badge-dot {
+  position: absolute;
+  top: 16rpx;
+  right: 18rpx;
+  width: 12rpx;
+  height: 12rpx;
+  background-color: #FF4D4F;
+  border-radius: 50%;
+}
+
+/* ================= 内容滚动区 ================= */
+.content-section {
+  flex: 1;
+  height: 0;
+  background-color: #F6F7F9;
+  position: relative;
+  margin-top: -30rpx; /* 向上偏移盖住地图底部 */
+  border-radius: 30rpx 30rpx 0 0;
+  z-index: 10;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+/* 查看路线悬浮标签 */
+.route-tag {
+  position: absolute;
+  top: -20rpx;
+  left: 0;
+  background-color: var(--theme-main);
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+  padding: 12rpx 24rpx;
+  border-radius: 0 20rpx 20rpx 0;
+  box-shadow: 0 4rpx 10rpx rgba(255, 140, 0, 0.3);
+  z-index: 11;
+}
+
+/* 车主卡片 */
+.driver-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+.driver-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background-color: #E5E5E5;
+}
+
+.driver-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #111;
+  margin-right: 12rpx;
+}
+
+.verify-tag {
+  font-size: 20rpx;
+  color: var(--theme-main);
+  background-color: #FFF4E8;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.stats {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 电话和消息按钮 */
+.action-btns {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background-color: #F4F5F7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.action-btn:active {
+  background-color: #E8EAEF;
+}
+
+/* 行程详情卡片 */
+.trip-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.02);
+}
+
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.time {
+  font-size: 40rpx;
+  font-weight: 900;
+  color: #111;
+}
+
+.seats {
+  font-size: 28rpx;
+  color: var(--theme-main);
+  font-weight: bold;
+}
+
+/* 上下车标签组 */
+.location-group {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.group-icon {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+  flex-shrink: 0;
+}
+.icon-up { background-color: var(--theme-main); }
+.icon-down { background-color: #4A5A6A; } /* 深蓝灰 */
+
+.tags-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.tag-item {
+  padding: 16rpx 28rpx;
+  background-color: #F4F5F7;
+  color: #333;
+  font-size: 28rpx;
+  border-radius: 12rpx;
+  transition: all 0.2s;
+}
+
+.tag-active {
+  background-color: #FFF4E8;
+  color: var(--theme-main);
+  font-weight: bold;
+}
+
+/* 备注信息 */
+.remark-box {
+  background-color: #F8F9FA;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.bottom-spacer {
+  height: 200rpx;
+}
+
+/* ================= 底部预定操作栏 ================= */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 40rpx calc(20rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.price-box {
+  display: flex;
+  align-items: baseline;
+  color: #111;
+}
+
+.symbol { font-size: 28rpx; font-weight: bold; }
+.price { font-size: 56rpx; font-weight: 900; margin-left: 4rpx; }
+.unit { font-size: 26rpx; color: #999; margin-left: 8rpx; }
+
+.book-btn {
+  background-color: var(--theme-main);
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: bold;
+  height: 96rpx;
+  width: 320rpx;
+  border-radius: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  box-shadow: 0 8rpx 24rpx rgba(255, 140, 0, 0.3);
+}
+
+.book-btn::after { border: none; }
+.book-btn:active { transform: scale(0.98); opacity: 0.9; }
