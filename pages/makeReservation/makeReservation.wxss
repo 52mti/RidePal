@@ -295,3 +295,177 @@ page {
 
 .book-btn::after { border: none; }
 .book-btn:active { transform: scale(0.98); opacity: 0.9; }
+
+/* ================= 确认订单弹窗样式 ================= */
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh; /* 弹窗高度 */
+  background-color: #ffffff;
+}
+
+.popup-header {
+  font-size: 34rpx;
+  font-weight: bold;
+  text-align: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #F6F7F9;
+}
+
+.popup-scroll {
+  flex: 1;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36rpx 0;
+  border-bottom: 1rpx solid #F6F7F9;
+}
+
+.row-label {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.row-value-box {
+  display: flex;
+  align-items: center;
+}
+
+.row-value {
+  font-size: 30rpx;
+  color: #333333;
+  margin-right: 10rpx;
+}
+
+.bold-text {
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+/* 自定义步进器 */
+.custom-stepper {
+  display: flex;
+  align-items: center;
+  background-color: #F8F9FA;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.step-btn {
+  width: 60rpx;
+  height: 56rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  color: #333;
+}
+.step-btn.disabled { color: #cccccc; }
+.step-num {
+  width: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+/* 费用明细 */
+.fee-row {
+  align-items: flex-start;
+}
+
+.fee-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-right: 40rpx;
+}
+
+.fee-desc {
+  font-size: 22rpx;
+  color: #999999;
+  margin-top: 8rpx;
+  line-height: 1.4;
+}
+
+/* 打赏平台 */
+.tip-section {
+  padding: 36rpx 0;
+}
+
+.tip-tags {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+
+.tip-tag {
+  width: 22%;
+  height: 64rpx;
+  background-color: #F4F5F7;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666;
+  border: 2rpx solid transparent;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+.tip-tag.active {
+  background-color: #FFF4E8;
+  color: var(--theme-main);
+  border-color: var(--theme-main);
+  font-weight: bold;
+}
+
+.tip-input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: var(--theme-main);
+}
+
+/* 底部结算栏 */
+.pay-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 40rpx calc(20rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.total-box {
+  display: flex;
+  align-items: baseline;
+}
+.total-label { font-size: 30rpx; font-weight: bold; color: #111; }
+.total-symbol { font-size: 30rpx; font-weight: bold; color: #111; margin-left: 10rpx;}
+.total-price { font-size: 48rpx; font-weight: 900; color: #111; }
+
+.pay-btn {
+  background-color: var(--theme-main);
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: bold;
+  height: 96rpx;
+  width: 280rpx;
+  border-radius: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}

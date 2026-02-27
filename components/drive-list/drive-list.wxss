@@ -1,0 +1,206 @@
+.divider {
+  width: 100%;
+  height: 1rpx;
+  background-color: #F0F0F0;
+}
+
+/* 顶部状态过滤 */
+.status-filter {
+  display: flex;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+}
+.status-tag {
+  font-size: 26rpx;
+  color: #666;
+  background-color: #F4F5F7;
+  padding: 10rpx 30rpx;
+  border-radius: 12rpx; 
+  margin-right: 20rpx;
+}
+.status-tag.active {
+  color: #fff;
+  background-color: #FF8C00;
+  font-weight: bold;
+}
+
+/* 横向日期滚动 */
+.date-scroll {
+  width: 100%;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.date-list {
+  display: flex;
+  padding: 0 30rpx;
+}
+.date-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110rpx;
+  height: 130rpx;
+  background-color: #F8F9FA;
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.date-item.date-active {
+  background-color: #FF8C00;
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(255, 140, 0, 0.3);
+}
+.date-week {
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+  opacity: 0.8;
+}
+.date-day {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+/* 列表容器 */
+.trip-list {
+  padding: 24rpx;
+}
+.trip-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.03);
+}
+.trip-card.no-margin {
+  margin-bottom: 0;
+}
+
+/* 卡片头部 */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.card-header .time {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+.tag-status {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+/* 状态标签动态颜色 */
+.tag-blue { color: #3b73ea; background-color: #ebf2ff; }
+.tag-orange { color: #FF8C00; background-color: #FFF3E8; }
+.tag-gray { color: #999999; background-color: #F4F5F7;}
+.tag-green { color: #07c160; background-color: #E6F9ED; }
+
+/* 路线排版：改为左右水平居中对齐 */
+.horizontal-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+.route-point {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+}
+.icon-qi, .icon-zhong {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: #fff;
+  background-color: #FF8C00;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+.location-text {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.route-arrow {
+  margin: 0 20rpx;
+  color: #cccccc;
+  font-size: 24rpx;
+  font-weight: bold;
+  transform: rotate(-90deg);
+}
+
+/* 卡片底部操作区 */
+.driver-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.driver-info {
+  display: flex;
+  flex-direction: column;
+}
+.driver-name {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.car-model {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 按钮组 */
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.cancel-btn {
+  font-size: 24rpx;
+  color: #666;
+  border: 1rpx solid #E5E5E5;
+  padding: 10rpx 24rpx;
+  border-radius: 12rpx;
+  background-color: #fff;
+}
+.icon-btn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-btn {
+  color: #FF8C00;
+  background-color: #FFF3E8;
+}
+.chat-btn {
+  color: #fff;
+  background-color: #FF8C00;
+}
+.icon-disabled {
+  color: #cccccc !important;
+  background-color: #F4F5F7 !important;
+}
+
+.empty-tip {
+  text-align: center;
+  color: #ccc;
+  font-size: 24rpx;
+  padding: 40rpx 0;
+}

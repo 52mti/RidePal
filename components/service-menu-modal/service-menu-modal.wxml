@@ -3,7 +3,7 @@
   position="bottom"
   round
   bind:close="onClose"
-  custom-style="height: 40%;"
+  custom-style="bottom: 50px;"
 >
   <view class="menu-header">选择服务频道</view>
   

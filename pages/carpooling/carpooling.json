@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "拼车服务",
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index",
     "van-button": "@vant/weapp/button/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-grid": "@vant/weapp/grid/index",
@@ -9,8 +8,6 @@
     "van-search": "@vant/weapp/search/index",
     "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
-    "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
     "van-tag": "@vant/weapp/tag/index",
     "service-menu-modal": "/components/service-menu-modal/service-menu-modal"
   }

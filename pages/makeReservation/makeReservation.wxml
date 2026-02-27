@@ -99,4 +99,103 @@
     <button class="book-btn" bindtap="onBookSeat">预定座位</button>
   </view>
 
+  <van-popup
+    show="{{ showConfirmPopup }}"
+    position="bottom"
+    round
+    closeable
+    bind:close="onClosePopup"
+    z-index="999"
+  >
+    <view class="popup-container">
+      <view class="popup-header">确认订单</view>
+
+      <scroll-view scroll-y class="popup-scroll">
+        
+        <view class="form-row" bindtap="openLocationPicker" data-type="boarding">
+          <text class="row-label">上车点</text>
+          <view class="row-value-box">
+            <text class="row-value bold-text">{{ activeBoardingIndex !== -1 ? boardingPoints[activeBoardingIndex].name : '请选择上车点' }}</text>
+            <van-icon name="arrow" color="#cccccc" size="16px" />
+          </view>
+        </view>
+
+        <view class="form-row" bindtap="openLocationPicker" data-type="alighting">
+          <text class="row-label">下车点</text>
+          <view class="row-value-box">
+            <text class="row-value bold-text">{{ activeAlightingIndex !== -1 ? alightingPoints[activeAlightingIndex].name : '请选择下车点' }}</text>
+            <van-icon name="arrow" color="#cccccc" size="16px" />
+          </view>
+        </view>
+
+        <view class="form-row">
+          <text class="row-label">乘车人数</text>
+          <view class="custom-stepper">
+            <view class="step-btn {{ passengerCount <= 1 ? 'disabled' : '' }}" bindtap="onChangePassenger" data-step="-1"><van-icon name="minus" /></view>
+            <view class="step-num">{{ passengerCount }}</view>
+            <view class="step-btn" bindtap="onChangePassenger" data-step="1"><van-icon name="plus" color="var(--theme-main)" /></view>
+          </view>
+        </view>
+
+        <view class="form-row">
+          <text class="row-label">座位费用</text>
+          <text class="row-value">￥ {{ basePrice }}</text>
+        </view>
+
+        <view class="form-row fee-row">
+          <view class="fee-info">
+            <text class="row-label">平台服务费</text>
+            <text class="fee-desc">服务费用于支持平台技术研发及日常运营维护，支付交易手续费</text>
+          </view>
+          <text class="row-value">￥ {{ serviceFee }}</text>
+        </view>
+
+        <view class="form-row fee-row">
+          <view class="fee-info">
+            <text class="row-label">保险费</text>
+            <text class="fee-desc">保障行程安全，由第三方保险公司承保</text>
+          </view>
+          <text class="row-value">￥ {{ insuranceFee }}</text>
+        </view>
+
+        <view class="tip-section">
+          <view class="fee-info">
+            <text class="row-label">打赏平台 (可选)</text>
+            <text class="fee-desc">支持平台持续提供优质服务</text>
+          </view>
+          <view class="tip-tags">
+            <view class="tip-tag {{ activeTipIndex === 0 ? 'active' : '' }}" bindtap="onSelectTip" data-index="0" data-val="1">¥1</view>
+            <view class="tip-tag {{ activeTipIndex === 1 ? 'active' : '' }}" bindtap="onSelectTip" data-index="1" data-val="2">¥2</view>
+            <view class="tip-tag {{ activeTipIndex === 2 ? 'active' : '' }}" bindtap="onSelectTip" data-index="2" data-val="5">¥5</view>
+            <view class="tip-tag {{ activeTipIndex === 3 ? 'active' : '' }}" bindtap="onSelectTip" data-index="3" data-val="other">
+              <text wx:if="{{ activeTipIndex !== 3 }}">其他</text>
+              <input wx:else class="tip-input" type="digit" value="{{ customTip }}" bindinput="onCustomTipInput" placeholder="输入金额" focus="{{ tipInputFocus }}" />
+            </view>
+          </view>
+        </view>
+        
+        <view style="height: 180rpx;"></view>
+      </scroll-view>
+
+      <view class="pay-bottom-bar">
+        <view class="total-box">
+          <text class="total-label">小计：</text>
+          <text class="total-symbol">￥</text>
+          <text class="total-price">{{ totalAmount }}</text>
+        </view>
+        <button class="pay-btn" bindtap="onPayNow">立即支付</button>
+      </view>
+    </view>
+  </van-popup>
+
+  <van-action-sheet
+    show="{{ showActionSheet }}"
+    actions="{{ actionSheetItems }}"
+    z-index="1000"
+    cancel-text="取消"
+    bind:close="onCloseActionSheet"
+    bind:cancel="onCloseActionSheet"
+    bind:select="onSelectActionSheetItem"
+  />
+
 </view>

@@ -13,5 +13,6 @@
   text-align: center;
   color: #666;
   border-top: 10px solid #f7f8fa; /* 分隔条 */
+  border-bottom: 10px solid #f7f8fa;
   font-size: 16px;
 }

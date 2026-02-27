@@ -1,0 +1,55 @@
+<view class="divider"></view>
+
+<view class="status-filter">
+  <view class="status-tag active">进行中</view>
+  <view class="status-tag">已完成</view>
+</view>
+
+<scroll-view scroll-x class="date-scroll" show-scrollbar="{{false}}">
+  <view class="date-list">
+    <view class="date-item {{item.active ? 'date-active' : ''}}" wx:for="{{dateList}}" wx:key="id" bindtap="selectDate" data-id="{{item.id}}">
+      <text class="date-week">{{item.week}}</text>
+      <text class="date-day">{{item.day}}</text>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="trip-list">
+  <view class="trip-card {{ index === driveList.length - 1 ? 'no-margin' : '' }}" wx:for="{{driveList}}" wx:key="id" bindtap="goToDriveDetail">
+    
+    <view class="card-header">
+      <text class="time">{{item.time}}</text>
+      <view class="tag-status {{item.statusClass}}">{{item.status}}</view>
+    </view>
+
+    <view class="route-box horizontal-route">
+      <view class="route-point">
+        <view class="icon-qi">起</view>
+        <text class="location-text">{{item.start}}</text>
+      </view>
+      <van-icon name="down" class="route-arrow" />
+      <view class="route-point">
+        <view class="icon-zhong">终</view>
+        <text class="location-text">{{item.end}}</text>
+      </view>
+    </view>
+
+    <view class="driver-footer">
+      <view class="driver-info">
+        <text class="driver-name">司机：{{item.driverName}}</text>
+        <text class="car-model">{{item.carInfo}}</text>
+      </view>
+      <view class="right-actions">
+        <view class="action-btn cancel-btn" catchtap="cancelItinerary" wx:if="{{item.status === '待出发' || item.status === '进行中'}}">取消行程</view>
+        
+        <view class="action-btn icon-btn phone-btn {{item.status === '已过期' || item.status === '已完成' ? 'icon-disabled' : ''}}" catchtap="handleCall">
+          <van-icon name="phone" size="18px"/>
+        </view>
+        <view class="action-btn icon-btn chat-btn {{item.status === '已过期' || item.status === '已完成' ? 'icon-disabled' : ''}}" catchtap="handleChat">
+          <van-icon name="chat" size="18px"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-tip">没有更多行程了</view>
+</view>

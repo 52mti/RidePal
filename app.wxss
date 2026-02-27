@@ -20,3 +20,7 @@ page {
   height: 0;
   color: transparent;
 }
+
+.page-list .van-tabs__line {
+  bottom: 8rpx !important;
+}

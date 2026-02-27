@@ -28,7 +28,24 @@ Page({
       { name: '西土城地铁站', lat: 39.976, lng: 116.353 },
       { name: '十里河地铁站', lat: 39.865, lng: 116.458 }
     ],
-    activeAlightingIndex: -1 // 默认不选中
+    activeAlightingIndex: -1, // 默认不选中
+
+    // ===== 确认订单弹窗相关状态 =====
+    showConfirmPopup: false,
+    passengerCount: 1,      // 乘车人数
+    basePrice: 20,          // 单人座位费用
+    serviceFee: 0.6,        // 平台服务费
+    insuranceFee: 2.0,      // 保险费
+    tipAmount: 0,           // 实际打赏金额
+    activeTipIndex: -1,     // -1无，0:¥1, 1:¥2, 2:¥5, 3:其他
+    customTip: '',          // 输入的其他金额
+    tipInputFocus: false,   // 控制键盘弹起
+    totalAmount: '0.00',    // 合计金额
+
+    // ===== 选择地点弹窗(ActionSheet)相关状态 =====
+    showActionSheet: false,
+    actionSheetItems: [],
+    pickingType: '', // 'boarding' 或 'alighting'
   },
 
   onLoad() {
@@ -143,13 +160,147 @@ Page({
     });
   },
 
-  // 点击预定按钮
+  // 1. 原有的预定按钮，改为弹出面板并计算初始金额
   onBookSeat() {
-    wx.showToast({
-      title: '正在为您预定...',
-      icon: 'loading',
-      duration: 1500
+    if (this.data.activeBoardingIndex === -1 || this.data.activeAlightingIndex === -1) {
+      wx.showToast({ title: '请先选择上下车点', icon: 'none' });
+      return;
+    }
+    this.calculateTotal();
+    this.setData({ showConfirmPopup: true });
+  },
+
+  // 关闭主面板
+  onClosePopup() {
+    this.setData({ showConfirmPopup: false });
+  },
+
+  // 2. 加减乘车人数
+  onChangePassenger(e) {
+    const step = parseInt(e.currentTarget.dataset.step);
+    let newCount = this.data.passengerCount + step;
+    if (newCount < 1) newCount = 1; 
+    if (newCount > 4) newCount = 4; // 限制最多4人
+
+    this.setData({ passengerCount: newCount }, () => {
+      this.calculateTotal(); // 人数变了，重新算钱
     });
-    // TODO: 提交订单逻辑
+  },
+
+  // 3. 互斥选择打赏金额
+  onSelectTip(e) {
+    const index = parseInt(e.currentTarget.dataset.index);
+    const val = e.currentTarget.dataset.val;
+
+    // 如果点击的是已经选中的项，则取消选中
+    if (this.data.activeTipIndex === index && index !== 3) {
+      this.setData({ activeTipIndex: -1, tipAmount: 0 }, this.calculateTotal);
+      return;
+    }
+
+    let currentTip = 0;
+    let focus = false;
+
+    if (val === 'other') {
+      currentTip = Number(this.data.customTip) || 0;
+      focus = true; // 唤起键盘
+    } else {
+      currentTip = Number(val);
+    }
+
+    this.setData({
+      activeTipIndex: index,
+      tipAmount: currentTip,
+      tipInputFocus: focus
+    }, this.calculateTotal);
+  },
+
+  // 监听自定义金额输入
+  onCustomTipInput(e) {
+    // 过滤非数字
+    let val = e.detail.value.replace(/[^0-9.]/g, ''); 
+    this.setData({ 
+      customTip: val,
+      tipAmount: Number(val) || 0
+    }, this.calculateTotal);
+  },
+
+  // 4. 核心算钱逻辑
+  calculateTotal() {
+    const { passengerCount, basePrice, serviceFee, insuranceFee, tipAmount } = this.data;
+    // 小计 = (人数 * 座位费) + 服务费 + 保险费 + 打赏
+    let total = (passengerCount * basePrice) + serviceFee + insuranceFee + tipAmount;
+    
+    // 保留两位小数，防止 JS 浮点数精度问题 (如 0.1+0.2=0.300000004)
+    this.setData({
+      totalAmount: total.toFixed(2)
+    });
+  },
+
+  // 5. 弹窗内修改上下车点 (结合 ActionSheet)
+  openLocationPicker(e) {
+    const type = e.currentTarget.dataset.type;
+    const points = type === 'boarding' ? this.data.boardingPoints : this.data.alightingPoints;
+    
+    // 组装 ActionSheet 需要的数据格式 { name: 'xxx', index: 0 }
+    const actions = points.map((item, index) => ({
+      name: item.name,
+      index: index
+    }));
+
+    this.setData({
+      pickingType: type,
+      actionSheetItems: actions,
+      showActionSheet: true
+    });
+  },
+
+  onCloseActionSheet() {
+    this.setData({ showActionSheet: false });
+  },
+
+  // 选中了新的地点
+  onSelectActionSheetItem(e) {
+    const selectedIndex = e.detail.index;
+    const type = this.data.pickingType;
+
+    if (type === 'boarding') {
+      this.setData({ activeBoardingIndex: selectedIndex });
+      this.updateMapLocation('boarding', selectedIndex); // 复用你之前的地图移动逻辑
+    } else {
+      this.setData({ activeAlightingIndex: selectedIndex });
+      this.updateMapLocation('alighting', selectedIndex);
+    }
+
+    this.setData({ showActionSheet: false });
+  },
+
+  // 6. 唤起原生支付功能
+  onPayNow() {
+    wx.showLoading({ title: '拉起收银台', mask: true });
+
+    // 模拟后端请求及唤起微信支付
+    setTimeout(() => {
+      wx.hideLoading();
+      
+      // 真实业务中，你需要用 wx.request 调用你的后端获取以下参数
+      wx.requestPayment({
+        timeStamp: '', // 必填
+        nonceStr: '',  // 必填
+        package: '',   // 必填 prepay_id
+        signType: 'RSA', 
+        paySign: '',   // 必填
+        success: (res) => {
+          wx.showToast({ title: '支付成功', icon: 'success' });
+          this.setData({ showConfirmPopup: false });
+        },
+        fail: (err) => {
+          // 这里是 Mock 演示，直接当作支付成功处理
+          wx.showToast({ title: '模拟支付成功', icon: 'success' });
+          this.setData({ showConfirmPopup: false });
+          // wx.showToast({ title: '支付取消', icon: 'none' });
+        }
+      });
+    }, 1000);
   }
 });
