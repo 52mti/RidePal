@@ -1,0 +1,317 @@
+page {
+  background-color: #F6F7F9;
+  height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+/* 顶部导航 */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px; /* 导航栏基础高度 */
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: 100;
+}
+.nav-back {
+  width: 60rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-content {
+  flex: 1;
+  height: 0;
+}
+
+/* ================= 圆形地图区域 ================= */
+.map-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -40rpx; /* 让下面的卡片稍微盖住地图底部一点，更有层次感 */
+  z-index: 1;
+}
+
+.status-tag {
+  position: absolute;
+  top: 40rpx;
+  left: 40rpx;
+  background-color: #ffffff;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.06);
+  z-index: 10;
+}
+
+.status-dot {
+  width: 14rpx;
+  height: 14rpx;
+  background-color: var(--theme-main);
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.map-circle {
+  width: 600rpx;
+  height: 600rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 12rpx solid #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.04);
+  background-color: #e5e5e5;
+}
+
+map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= 司机信息卡片 ================= */
+.driver-card {
+  margin: 0 30rpx 24rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.02);
+}
+
+.driver-left {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  background-color: #f0f0f0;
+}
+
+.driver-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #111;
+  margin-right: 12rpx;
+}
+
+.rating {
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 4rpx;
+}
+
+.car-info {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.call-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background-color: #FFF4E8; /* 极淡的橙色底 */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.call-btn:active { opacity: 0.8; }
+
+/* ================= 详情卡片 ================= */
+.details-card {
+  margin: 0 30rpx 30rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.02);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.time-box {
+  display: flex;
+  align-items: center;
+}
+.clock-icon { margin-right: 12rpx; margin-top: 4rpx; }
+.time-text { font-size: 34rpx; font-weight: 900; color: #111; }
+.order-type { font-size: 26rpx; color: #999; }
+
+/* 路线时间轴 */
+.route-timeline {
+  position: relative;
+  margin-bottom: 40rpx;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 20rpx;
+  top: 40rpx;
+  bottom: 40rpx;
+  width: 2rpx;
+  background-color: #EEEEEE;
+  z-index: 1;
+}
+
+.route-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40rpx;
+  position: relative;
+  z-index: 2;
+}
+.route-item:last-child { margin-bottom: 0; }
+
+.icon-circle {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 22rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24rpx;
+  margin-top: 4rpx;
+  flex-shrink: 0;
+  background-color: var(--theme-main);
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 8rpx;
+}
+
+.location-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 费用明细 */
+.fee-box {
+  background-color: #F8F9FA;
+  border-radius: 12rpx;
+  padding: 30rpx;
+}
+
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.fee-row:last-child { margin-bottom: 0; }
+
+.fee-label { font-size: 26rpx; color: #666; }
+.fee-val { font-size: 28rpx; color: #111; font-weight: bold; }
+
+.fee-actual {
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  border-top: 1rpx dashed #E5E5E5;
+  align-items: center;
+}
+.fee-label-bold { font-size: 30rpx; font-weight: bold; color: #111; }
+.fee-val-bold { font-size: 40rpx; font-weight: 900; color: var(--theme-main); }
+
+/* 订单号 */
+.order-no {
+  text-align: center;
+  font-size: 22rpx;
+  color: #bbbbbb;
+  margin-top: 20rpx;
+}
+
+.bottom-spacer { height: 160rpx; }
+
+/* ================= 底部操作栏 ================= */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.03);
+  z-index: 100;
+  gap: 20rpx;
+}
+
+.btn-home {
+  flex: 1;
+  height: 96rpx;
+  background-color: #F4F5F7;
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.btn-home::after { border: none; }
+
+.btn-contact {
+  flex: 1.4; /* 按钮稍微宽一点 */
+  height: 96rpx;
+  background-color: var(--theme-main);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  box-shadow: var(--btn-shadow); /* 使用您的专属阴影变量 */
+}
+.btn-contact::after { border: none; }
+
+.btn-icon { margin-right: 12rpx; margin-bottom: 2rpx;}

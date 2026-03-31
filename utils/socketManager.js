@@ -1,4 +1,4 @@
-import eventBus from './eventBus'; // 引入我们上一轮写的全局分发器
+import eventBus from './eventBus';
 
 class SocketManager {
   constructor() {

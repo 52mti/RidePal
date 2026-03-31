@@ -293,11 +293,17 @@ Page({
         success: (res) => {
           wx.showToast({ title: '支付成功', icon: 'success' });
           this.setData({ showConfirmPopup: false });
+          wx.navigateTo({
+            url: '/pages/check-finished/check-finished'
+          });
         },
         fail: (err) => {
           // 这里是 Mock 演示，直接当作支付成功处理
           wx.showToast({ title: '模拟支付成功', icon: 'success' });
           this.setData({ showConfirmPopup: false });
+          wx.navigateTo({
+            url: '/pages/check-finished/check-finished'
+          });
           // wx.showToast({ title: '支付取消', icon: 'none' });
         }
       });

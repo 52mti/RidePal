@@ -1,0 +1,104 @@
+<view class="page-container">
+  
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-back" bindtap="goBack">
+      <van-icon name="arrow-left" size="20px" color="#333" />
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="scroll-content" show-scrollbar="{{false}}">
+    
+    <view class="map-wrapper" style="margin-top: {{statusBarHeight + 10}}px;">
+      <view class="status-tag">
+        <view class="status-dot"></view>
+        <text>行程中</text>
+      </view>
+      
+      <view class="map-circle">
+        <map 
+          id="tripMap" 
+          longitude="{{tripInfo.lng}}" 
+          latitude="{{tripInfo.lat}}" 
+          scale="13" 
+          show-location
+        ></map>
+      </view>
+    </view>
+
+    <view class="driver-card">
+      <view class="driver-left">
+        <image class="avatar" src="{{tripInfo.driverAvatar}}" mode="aspectFill"></image>
+        <view class="driver-info">
+          <view class="name-row">
+            <text class="name">{{tripInfo.driverName}}</text>
+            <text class="rating">{{tripInfo.rating}}</text>
+            <van-icon name="star" color="#FF8C00" size="12px" />
+          </view>
+          <text class="car-info">{{tripInfo.carPlate}} · {{tripInfo.carModel}}</text>
+        </view>
+      </view>
+      <view class="call-btn" bindtap="callDriver">
+        <van-icon name="phone" color="var(--theme-main, #FF8C00)" size="20px" />
+      </view>
+    </view>
+
+    <view class="details-card">
+      <view class="card-header">
+        <view class="time-box">
+          <van-icon name="clock" color="#999" size="16px" class="clock-icon" />
+          <text class="time-text">{{tripInfo.tripTime}}</text>
+        </view>
+        <text class="order-type">{{tripInfo.orderType}}</text>
+      </view>
+
+      <view class="route-timeline">
+        <view class="route-item">
+          <view class="icon-circle icon-up">上</view>
+          <view class="location-info">
+            <text class="location-name">{{tripInfo.startName}}</text>
+            <text class="location-desc">{{tripInfo.startDesc}}</text>
+          </view>
+        </view>
+        <view class="route-item">
+          <view class="icon-circle icon-down">下</view>
+          <view class="location-info">
+            <text class="location-name">{{tripInfo.endName}}</text>
+            <text class="location-desc">{{tripInfo.endDesc}}</text>
+          </view>
+        </view>
+        <view class="timeline-line"></view>
+      </view>
+
+      <view class="fee-box">
+        <view class="fee-row">
+          <text class="fee-label">订单总额</text>
+          <text class="fee-val">¥ {{tripInfo.totalPrice}}</text>
+        </view>
+        <view class="fee-row">
+          <text class="fee-label">平台打赏</text>
+          <text class="fee-val">¥ {{tripInfo.tipPrice}}</text>
+        </view>
+        <view class="fee-row fee-actual">
+          <text class="fee-label-bold">实付金额</text>
+          <text class="fee-val-bold">¥ {{tripInfo.actualPrice}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="order-no">订单编号：{{tripInfo.orderNo}}</view>
+
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+
+  <view class="bottom-bar">
+    <button class="btn-home" bindtap="goHome">
+      <van-icon name="wap-home" size="18px" class="btn-icon" />
+      <text>返回首页</text>
+    </button>
+    <button class="btn-contact" bindtap="contactDriver">
+      <van-icon name="chat" size="18px" class="btn-icon" />
+      <text>联系司机</text>
+    </button>
+  </view>
+
+</view>

@@ -1,4 +1,5 @@
 const serviceBehavior = require('../../behaviors/service-popup')
+import eventBus from '../../utils/eventBus';
 
 Page({
   behaviors: [serviceBehavior],
@@ -11,6 +12,11 @@ Page({
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({ active: 0 })
     }
+    eventBus.on('NEW_MESSAGE', this.handleNewMessage);
+  },
+
+  onHide() {
+    eventBus.off('NEW_MESSAGE', this.handleNewMessage);
   },
 
   handleSearchClick() {

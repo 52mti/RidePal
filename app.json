@@ -17,7 +17,8 @@
     "pages/ride-track/ride-track",
     "pages/set-location/set-location",
     "pages/location-detail/location-detail",
-    "pages/makeReservation/makeReservation"
+    "pages/makeReservation/makeReservation",
+    "pages/check-finished/check-finished"
   ],
   "plugins": {
     "WechatSI": {
